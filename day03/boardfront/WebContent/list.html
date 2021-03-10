@@ -1,0 +1,139 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ --><script>
+function showList(responseObj){ //ajax응답이 성공되었을 때 호출되는 함수. 응답결과값을 갖고오는 showList함수
+	//테이블객체 찾기
+	var $tableObj =$("section>div.list>table");
+	
+	$("section>div.list>table tr.copy").remove();
+	
+	//원본행객체 찾기
+	var $trOriginObj = $("section>div.list>table tr.origin");
+	$trOriginObj.show(); //원본행 객체 보여주기
+	if(responseObj.status == -1){
+		alert(responseObj.msg);
+		return false;
+	}else{
+		$(responseObj.list).each(function(index, element){
+			var $trCopyObj = $trOriginObj.clone(); //원본행 객체의 복제본 만들기
+			$trCopyObj.addClass("copy"); //복제본행의 클래스 속성으로 copy설정
+			$trCopyObj.removeClass("origin"); //복제본행의 클래스 속성중 origin제거
+			
+			//복제본행의 내용 채우기 : 게시글 번호
+			$trCopyObj.find("td.board_no").html(element.board_no);
+			
+			var str = '';
+			for(var i=1; i<element.level;i++){
+				str +='&#10149;';
+			}
+			//복제본행의 내용 채우기 : 게시글 제목
+			$trCopyObj.find("td.board_title").html(str+element.board_title);
+			
+			//복제본행의 내용 채우기 : 게시글 작성자
+			$trCopyObj.find("td.board_writer").html(element.board_writer);
+			
+			//복제본행의 내용 채우기 : 작성일자
+			$trCopyObj.find("td.board_dt").html(element.board_dt);
+			
+			//복제본행의 내용 채우기 : 조회수
+			$trCopyObj.find("td.board_cnt").html(element.board_cnt);
+			
+			//테이블객체의 자식객체로 복제본행을 추가
+			$tableObj.append($trCopyObj);
+		}); //each
+		
+		$trOriginObj.hide();
+	}
+}
+$(function(){
+	 $.ajax({
+		url: "/boardback/list",
+		method: 'get',
+		success: function(responseObj){
+			//alert(responseObj.list.length);
+			showList(responseObj);
+		},
+		error : function(jqXHR) {
+			alert("오류:" + jqXHR.status);
+		}
+	});//$ajax */
+	
+	//--게시물 클릭 시작--
+	$("section>div.list>table").on("click", "tr>td", function(event){
+		var board_no = $(event.target).parent().children("td.board_no").html().trim();
+		
+		$("section").load("detail.html", function(){
+			$.ajax({
+				url: "/boardback/detail",
+				method: "get",
+				data: "board_no=" + board_no,
+				success:function(responseObj){
+					var board = responseObj.board;
+					if(responseObj.status == 1){
+						$("div.detail>span.board_no").html(board.board_no);
+						$("div.detail>span.board_title").html(board.board_title);
+						$("div.detail>span.board_writer").html(board.board_writer);
+						$("div.detail>span.board_dt").html(board.board_dt);
+						$("div.detail>span.board_cnt").html(board.board_cnt);
+					}else{
+						alert(responseObj.msg);
+					}
+				},
+				error:function(jqXHR){
+					alert("에러:" + jqXHR.status);
+				}
+			}); 
+		});
+		return false;
+	});
+	//--게시물 클릭 끝--
+	
+	//--검색버튼 클릭 시작--
+	$("section>div.list>form>input[type=button]").click(function(){
+		 $.ajax({
+				url: "/boardback/list",
+				method: 'get',
+				data: 'word=' + $("section>div.list>form>input[name=word]").val(),
+				success: function(responseObj){
+					showList(responseObj);
+				}
+		});
+		return false;
+	});
+	//--검색버트 클릭 끝--
+});
+</script>
+<style>
+*{
+  box-sizing: border-box;
+}
+section>div.list>table{
+  border: 1px solid; border-collapse: collapse; width:50%;
+}
+section>div.list>table tr>td{
+  border: 1px solid;
+}
+section>div.list>table tr>td.board_no{ width: 10%; text-align: right; }
+section>div.list>table tr>td.board_title{ width: 40%; }
+section>div.list>table tr>td.board_writer{ width: 20%; }
+section>div.list>table tr>td.board_dt{ width: 20%; }
+section>div.list>table tr>td.board_cnt{ width: 10%; text-align: right; }
+</style>
+</head>
+<div class="list">
+
+<form>
+  <input type="hidden" name="board_no">
+  <input type="search" name="word"><input type="button" value="검색">
+</form>
+<table>
+
+ <tbody>
+ <tr class="origin">
+   <td class="board_no"></td>
+   <td class="board_title"></td>
+   <td class="board_writer"></td>
+   <td class="board_dt"></td>
+   <td class="board_cnt"></td>
+ </tr>
+</tbody></table>
+</div>
