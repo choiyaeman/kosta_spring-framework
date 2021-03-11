@@ -1,0 +1,38 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+-->
+<script>
+$(function(){
+	var $writeFormObj = $("section>div.write>form");
+	$writeFormObj.submit(function(){		
+		$.ajax({
+			url: $writeFormObj.attr("action"),
+			method: $writeFormObj.attr("method"),
+			data: $writeFormObj.serialize(), //form이 갖고있는 input태그들의 이름과 값이 모두 이콜 연산자를 갖는 문자열이 된다
+			success:function(responseObj){ //응답성공이란 응답완료(readyState가 4), 응답코드가 200인 경우를 말함
+				if(responseObj.status == 1){ //응답된 json객체의 status값이 1일 경우. 글쓰기 작업이 성공된 case
+					$("header>ul>li>a.list").trigger("click"); //a태그들은 메뉴들의 영역. 게시판 메뉴 클릭이벤트 강제 발생
+				}else{ //글쓰기 작업이 실패
+					alert(responseObj.msg);
+				}
+			},
+			error:function(jqXHR){ //응답자체에 문제가 있는 것
+				alert("에러:" + jqXHR.status);
+			}
+		});
+		return false;
+	});
+});
+</script>
+<style>
+*{
+  box-sizing: border-box;
+}
+</style>
+<div class="write">
+<form method="post" action="/boardback/write">
+     글제목: <input type="text" name="board_title"><br>
+     작성자 : <input type="text" name="board_writer"><br>
+     비밀번호:<input type="password" name="board_pwd" required><br>
+   <input type="submit" value="글쓰기"> 
+</form>
+</div>
