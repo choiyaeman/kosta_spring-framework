@@ -1,6 +1,6 @@
 # day05
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/110929354-380c4680-836b-11eb-842c-424ceb6f8172.png)
 
 Servlet하나가 모든 요청을 받아 처리하게 되면 관리하기 편하다. 이런 것을 프론트 컨트롤러 패턴이라 한다. 요청이 들어오면 서블릿 하나가 요청을 받아낼 것인데 요청의 경로를 보면 /boardbackController/list 또는 /boardbackController/detail이 요청이 되는 경우가 있다. 들어오는 것을 서블릿이 감지해야 한다. 요청을 분석해서 list가 요청이 된 것인지 detail이 요청이 된 것인지 감지 할 수 있어야 한다. 서블릿에 가보면 if~else구문으로 처리가 되어 있다. 서블릿안에 if~else가 들어가게 되면 들어갈수록 코딩 양이 많아질 것이고 요청 별로 모두 if~else로 구성되었다가 요청이 하나 더 추가가 되었다라하면 서블릿 소스 코드를 변경해야 한다. 요청 url바뀌거나 추가되거나 삭제되는 경우 수가 생기면 서블릿 소스 코드의 재사용성이 떨어진다.
 
@@ -113,7 +113,7 @@ Map계열로 많이 쓰이는 Hashtable하고 HashMap이 있다. Properties는 S
 
 Class...파라미터 타입 의미는 개수 제한 없이 똑같은 타입으로 여러 개 전달 할 수 있다라는 의미
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%201.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/110929355-380c4680-836b-11eb-9eec-9288cb276f41.png)
 
 첫 번째 방법으로 미리 객체를 하나 만들어서 각각의 컨트롤러에게 전달하면 된다.
 
@@ -406,11 +406,11 @@ public class BoardServlet extends HttpServlet {
 
 실행결과>
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%202.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/110929358-38a4dd00-836b-11eb-95e0-31407b8f5554.png)
 
 ContextPath는 고정해서 쓰지 않는게 관례이다.
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%203.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/110929360-393d7380-836b-11eb-87f2-27a4ee426b98.png)
 
 import>WarFile>boardfront
 
@@ -520,7 +520,7 @@ $(function(){
 
 ---
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%204.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/110929362-393d7380-836b-11eb-9402-064779b6bf84.png)
 
 최초로 주소 url요청이 되면 컨트롤 클래스를 찾아서 객체를 생성하러 간다. 그리고 그 객체가 생성될 때 서비스 변수에 해당하는 변수가 없으니깐 서비스 객체를 만든다. 만들 때 필요한 DAOOracle객체가 만들어진다. 
 
@@ -530,9 +530,9 @@ db하고 연결은 대단히 속도가 떨어지는 작업이다. 그래서 data
 
 list요청할 때마다 BoardListController객체가 만들어진다. 컨트롤러를 싱글톤 패턴으로 만들어 놓고 매번 요청할 때마다 객체 생성 하는 게 아니라 서비스 패턴처럼 getinstance메서드만 호출해서 객체만 반환 받으면 된다. 
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%205.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/110929364-39d60a00-836b-11eb-858f-ae35ccc19076.png)
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%206.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/110929366-39d60a00-836b-11eb-81d1-bda25cbbb476.png)
 
 - ContextLoaderListener.java
 
@@ -563,9 +563,9 @@ public class ContextLoaderListener implements ServletContextListener {
 }
 ```
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%207.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/110929324-33479280-836b-11eb-81ee-9e089e5ec53c.png)
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%208.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/110929326-33e02900-836b-11eb-99dd-7c247f3d67ad.png)
 
 /*→요청 중에 어떠한 요청이라도 좋으니까 무조건 필터를 거치게 하겠다라는 뜻 서블릿에게 전달하겠다.
 
@@ -606,7 +606,7 @@ public class CharacterEncodingFilter implements Filter {
 }
 ```
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%209.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/110929328-3478bf80-836b-11eb-8395-daff0951dd59.png)
 
 필터들이 서로 연결이 되어야 한다. 이어주는 매개변수가 FilterChain이다.
 
@@ -641,7 +641,7 @@ version="3.0">
 
 본격적으로 Spring 수업 나가기~~~
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2010.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/110929332-35115600-836b-11eb-8bef-4704788282a3.png)
 
 File>Switch Workspace>Other> 새로 만든 MySpring파일로 경로 지정
 
@@ -659,11 +659,11 @@ POJO가 아니다. 여기서 POJO란 순수 옛날부터 썼던 자바 객체를
 
 invoke하는 작업, url path분석해서 처리 등  스프링 컨테이너가 알아서 해준다. 스프링 컨테이너 안에는 jackson 라이브러리가 있다. jackson라이브러리를 이용해서 Map을 추가하는 작업이 들어있어서 안써도 된다.
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2011.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/110929333-35115600-836b-11eb-816c-b8e5441973f5.png)
 
 스프링 코딩 편하게 만들어 업그레드만 한 거고 스프링용 라이브러리가 있어야 한다.
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2012.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/110929335-35a9ec80-836b-11eb-8fe4-c1768cabb3cb.png)
 
 [https://mvnrepository.com/artifact/org.springframework/spring-context/5.2.6.RELEASE](https://mvnrepository.com/artifact/org.springframework/spring-context/5.2.6.RELEASE)
 
@@ -712,7 +712,7 @@ Spring의 특징
 
 1) Dependency Injection : 의존성 주입
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2013.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/110929337-35a9ec80-836b-11eb-8e8a-a3a12834186c.png)
 
 왼쪽은 클래스 다이어그램 그림이다. class들의 관계를 보면 DAO를 Service가 사용하는 관계(실선으로 표시)
 
@@ -722,11 +722,11 @@ Spring의 특징
 
 src오른쪽 클릭> new> Spring Bean Configure file> 이름을 config.xml로 설정> beans 체크
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2014.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/110929338-36428300-836b-11eb-94cc-27be6e44b049.png)
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2015.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/110929342-36428300-836b-11eb-9386-16cd036b4962.png)
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2016.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/110929347-36db1980-836b-11eb-860e-33e093c26b5c.png)
 
 boardbackController프로젝트에서 했던 com파일 그대로 복사해서 src에 붙여넣기
 
@@ -873,14 +873,14 @@ public class RepBoardService {
 }
 ```
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2017.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/110929350-36db1980-836b-11eb-93c7-8fa15f6bd3b9.png)
 
 파일을 읽어서 RepBoard객체를 생성한다. 그 이름을 b라는 이름으로 관리를 한다. 이것이 ctx이다. ctx가 참조하는 곳을 찾아보면 b라이는 이름이라는 객체를 찾아올거다. b1변수가 참조하는 메모리는 b라는 이름으로 관리되는 객체 b2변수가 참조하는 메모리도 b라는 이름으로 관리되는 객체를 참조한다.
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2018.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/110929352-3773b000-836b-11eb-93ca-a6ef95ec25c9.png)
 
 property에 의해서 setBoardDAO(dao)메서드가 자동 호출 
 
-![day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2019.png](day05%2086f870bdc05942e2a80dc0c9d11a1b92/Untitled%2019.png)
+![20](https://user-images.githubusercontent.com/63957819/110929353-3773b000-836b-11eb-9b58-ecfaf9f44420.png)
 
 setBoardDAO()호출됨 출력은 bean태그에 들어있는 property에 의해서 자동 호출이 된 거다.
