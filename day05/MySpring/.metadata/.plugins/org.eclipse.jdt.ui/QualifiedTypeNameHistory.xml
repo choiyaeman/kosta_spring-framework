@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="com.my.service.RepBoardService"/>
+<fullyQualifiedTypeName name="com.my.vo.RepBoard"/>
+<fullyQualifiedTypeName name="com.my.dao.RepBoardDAO"/>
+</qualifiedTypeNameHistroy>
