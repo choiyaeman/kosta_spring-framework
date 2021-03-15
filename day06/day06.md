@@ -8,11 +8,11 @@
 
 xml파일이 만들어져 있으면 한눈에 전체 구조를 파악할 수 있으나 xml파일이 점점 많아지면 관리하기 어려워 진다. 그래서 xml간소화 시키는 작업을 해보자. bean태그로 등록 안해도 자동 bean으로 등록될 수 있어야 한다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111128101-e3114000-85b7-11eb-92bd-004b2973b7ee.png)
 
 beans탭에 가서 하위요소context 선택
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%201.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111128103-e4426d00-85b7-11eb-9b23-3a1ca9b7fa52.png)
 
 context탭에 가서 beans오른쪽 클릭> component-scan선택하고 base-package 설정
 
@@ -73,7 +73,7 @@ public class RepBoard {
 
 예를들어 component-scan의 베이스 패키지를 com.my.vo를 설정했다면 해당 com.my.vo 클래스에 찾아가 @Component( value = ?) 값을 주면 된다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%202.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111128104-e4426d00-85b7-11eb-9c8c-f1f1ea2ecad2.png)
 
 Component 어노테이션은 타깃이 @Target(value={TYPE}) 이므로 클래스 선언 위에만 쓰일 수 있는 어노테이션이다.
 
@@ -83,23 +83,23 @@ Service 어노테이션도 Component의 하위 어노테이션이다.
 
 사실상 Component어노테이션을 써도 크게 관계는 없다. 그냥 의미를 좀 더 명확하기 위해 dao는 Repository, Service는 Service, vo는 Component로 해주는 거다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%203.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111128106-e4db0380-85b7-11eb-8073-042bc40c6426.png)
 
 Autowired 어노테이션은 누구에게 누구를 감아준다. 예를들어 서비스에게 dao를 묶어 주겠다.. Autowired가 붙어있는 메소드는 자동 호출이 된다. 서비스 객체가 생성되자마자 Autowired메서드가 자동 호출이 된다. 
 
 여기서 메소드가 호출이 될 때 주입 될 객체가 이름을 보고 찾아가는 게 아니라 매개변수의 자료형에 해당하는 타입을 보고 찾아 주입이 되는 거다. 매개변수의 자료형에 해당하는 값으로 채워진다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%204.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111128107-e5739a00-85b7-11eb-88b0-ef6b7a375e3c.png)
 
 근데 다른 데이터베이스가 있다고 하면 즉 db의 종류가 다르다고 가정하자~ dao가 두 개가 있다 이 두 개의 클래스가 Repository어노테이션이 선언이 되어 있으니깐 스프링 컨테이너에서 관리가 되어야 하는데 이름이 중복이 되어 있다. 이름을 바꿔주면 잘 관리가 된다. 그런데 autowired 어노테이션이 붙어 있는 메소드가 자동 호출이 되려할때 boardDAO에 대입 될 인자 값을 자료형으로 찾는데 RepBoardDAO가 두 개가 있으므로 혼란이 되어 오류가 난다. 
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%205.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111128110-e5739a00-85b7-11eb-9cfe-1ae06390da77.png)
 
 동일 자료형일 경우 Repository 값은 필요 없고 Qulifier 어노테이션을 주어 값을 설정하면 된다.
 
 매개변수 앞에도 어노테이션 사용 가능
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%206.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111128111-e60c3080-85b7-11eb-9478-2d1471f69d13.png)
 
 매개변수 없는 생성자는  스프링 컨테이너에서 자동으로 이루어지긴 하는데 강제로 특정 매개변수 있는 생성자로 호출되게 해보면 이때에도 Autowired어노테이션 설정 해준다. Autowired 주는 방법은 세 가지가 있다.
 
@@ -162,33 +162,33 @@ Autowired 어노테이션은 component-scan태그가 없으면 사용할 수 없
 
 ---
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%207.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111128113-e6a4c700-85b7-11eb-9e8f-a12ac2ede768.png)
 
 레거시스란 예전부터 제공하는 프로젝트 구조
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%208.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/111128115-e73d5d80-85b7-11eb-8ecc-236288faa7c1.png)
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%209.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/111128118-e73d5d80-85b7-11eb-98d0-d826c6e24366.png)
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2010.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/111128122-e7d5f400-85b7-11eb-83b1-f08326f4cd72.png)
 
 spring용 설정 파일 이름은 관계없고 그 대신 web.xml의 DispatcherServlet init-param에 반드시 등록이 되어 있어야 한다
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2011.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/111128124-e86e8a80-85b7-11eb-8604-e5f6780305e8.png)
 
 기본 자바 버전이 1.6이므로 1.8로 맞추자
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2012.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/111128127-e86e8a80-85b7-11eb-98bb-b150f9dc2687.png)
 
 DispathcherServlet에서 명시한 xml파일 값을 설정해두면 알아서 톰캣이 구동이 될 때 스프링 컨테이너를 구동을 한다. 웹 애플리케이션컨텍스트의 형태이다. WebApplicationContext는 알아서 자동 구동이 되는데 이것을 DispatcherServlet이 해준다.
 
 ClassPathXmlApplicationContext도 있고 WebApplicationContext도 있는 거다. 관리해줄 컨테이너의 형태는 WebApplicationContext가 되어야 한다. 우리가 직접 new키워드로 생성하는게 아니고 DispatcherServlet에게 맡겨야 한다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2013.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/111128129-e9072100-85b7-11eb-8ce2-a8da9b83f024.png)
 
 spring을 쓰려면 spring-webmvc가 반드시 필요하다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2014.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/111128130-e99fb780-85b7-11eb-9039-908f3181b5ed.png)
 
 [https://mvnrepository.com/artifact/org.springframework/spring-test/5.2.6.RELEASE](https://mvnrepository.com/artifact/org.springframework/spring-test/5.2.6.RELEASE)
 
@@ -365,9 +365,9 @@ spring을 쓰려면 spring-webmvc가 반드시 필요하다.
 </project>
 ```
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2015.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/111128131-e99fb780-85b7-11eb-867c-18efa16000e7.png)
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2016.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/111128132-ea384e00-85b7-11eb-9145-70d4e2ed1dfa.png)
 
 src>test>java 오른쪽 클릭> new> Junit Test Case> com.my.dao.test
 
@@ -444,9 +444,9 @@ com.my.dao하면 위의 src/main/java의 com.my.dao와 이름이 같으므로 �
     }
     ```
 
-    ![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2017.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/111128136-ea384e00-85b7-11eb-8502-b53e3b53458b.png)
 
-    ![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2018.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/111128140-ead0e480-85b7-11eb-9969-3c0d166be975.png)
 
 - servlet-contex.xml
 
@@ -484,7 +484,7 @@ com.my.dao하면 위의 src/main/java의 com.my.dao와 이름이 같으므로 �
 
 Run As > JUnit Test
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2019.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2019.png)
+![20](https://user-images.githubusercontent.com/63957819/111128143-ead0e480-85b7-11eb-8ea4-6a4f946c4b29.png)
 
 톰켓 켜지도 않고 단위 테스트를 할 수 있다.
 
@@ -494,7 +494,7 @@ ServletContext 타입이 먼저 객체가 생성이 되고 파라미터가 자�
 
 즉 비지니스로직에 관련된 설정(root-context.xml)을 먼저하고 컨트롤러와 view에 관련된 일(servlet-context.xml)을 나중에 한다.
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2020.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2020.png)
+![21](https://user-images.githubusercontent.com/63957819/111128145-eb697b00-85b7-11eb-98b7-ca2bbf259138.png)
 
 Namespaces> context 체크 
 
@@ -557,11 +557,11 @@ private Restaurant restaurant;
 
 lombok 설치>
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2021.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2021.png)
+![22](https://user-images.githubusercontent.com/63957819/111128146-ec021180-85b7-11eb-8ac7-9d59ce76fa24.png)
 
 [https://projectlombok.org/](https://projectlombok.org/) >download(1.8.18)> 다운로드 된 디렉토리로 이동> specify location 클릭> eclipse.exe 경로로 지정
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2022.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2022.png)
+![23](https://user-images.githubusercontent.com/63957819/111128152-ec9aa800-85b7-11eb-9087-6b826e4f769b.png)
 
 [https://mvnrepository.com/artifact/org.projectlombok/lombok/1.18.18](https://mvnrepository.com/artifact/org.projectlombok/lombok/1.18.18)
 
@@ -646,4 +646,4 @@ public List<RepBoard> selectAll() throws FindException{
 
 실행결과>
 
-![day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2023.png](day06%205d0a676268e9496c974e2f3b6cef6fa1/Untitled%2023.png)
+![24](https://user-images.githubusercontent.com/63957819/111128155-ec9aa800-85b7-11eb-8922-d78b55ce07e4.png)
