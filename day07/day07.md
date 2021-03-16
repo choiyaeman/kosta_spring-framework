@@ -1,14 +1,14 @@
 # day07
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111280227-f0453200-867e-11eb-879c-01fdc63742a4.png)
 
 xml file에는 config level설정, dao 소스 코드에서는 event level을 설정해준다
 
 실행결과>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%201.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111280233-f20ef580-867e-11eb-9b5a-fea2799930f5.png)
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%202.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111280234-f20ef580-867e-11eb-9120-ccbdcc0564af.png)
 
 <appender name="console" class="org.apache.log4j.ConsoleAppender">
 
@@ -26,11 +26,11 @@ xml file에는 config level설정, dao 소스 코드에서는 event level을 설
 
 ---
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%203.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111280235-f2a78c00-867e-11eb-861d-d866098103ca.png)
 
 maven repository로 가서 > spring-jdbc 검색 5.2.6버전 찾아가서 소스코드 pom.xml에 복붙 
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%204.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111280236-f2a78c00-867e-11eb-842b-8a4d746fe2df.png)
 
 com.my.sql 파일 지워도 된다.
 
@@ -371,7 +371,7 @@ public class RepBoardDAOOracle implements RepBoardDAO {
 }
 ```
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%205.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111280237-f3402280-867e-11eb-8913-79954754c68d.png)
 
 dataSource타입의 객체가 ds라는 변수에 자동 upcasting되어서 주입이 된다. ds가 SimpleDriverDataSource객체를 참조하게 된다.
 
@@ -379,7 +379,7 @@ dataSource타입의 객체가 ds라는 변수에 자동 upcasting되어서 주�
 
 ---
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%206.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111280243-f3d8b900-867e-11eb-83b1-2d90b6c1c6bd.png)
 
 서비스의 구성이 디렉토리처럼 구성이 되어있어서 나름대로 설계를 할 수 있다. 톰캣 서버가 시작하게 되면 서비스 layer 미리 활성화 시켜 놓을 수 있다. 데이터 베이스와 일을 할 수 있는 서비스를 등록할 수 있다. 즉 미리 소캣을 여러 개 만들어 놓고 서비스를 활성화 시킬 수 있다. 라이브러리의 도움을 받아서 쓸 수 있는데 이런 것을 커넥션풀이라 한다. 요청할 때 dao를 통해서 db하고 연결 절차를 하게 되면 선 요청 후 연결인데 요청한 사람 입장에서 속도가 지연되는 것을 볼 수 밖에 없다.
 
@@ -393,11 +393,11 @@ new키워드로 Initialcontext객체 생성한다. 서비스 영역의 진입하
 
 의존성 주입이 가장 좋은 패턴이 dataSource이다. 다른 형태의 커넥션풀을 쓰게 된다 해도 자료형은 dataSource타입이 되기 때문에 자바소스코드는 전혀 변경될게 없다
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%207.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111280245-f3d8b900-867e-11eb-97a1-108c79ece1dc.png)
 
 프레임워크가 하라는 대로 하는 거다. 그렇지만 라이브러리는 개발자가 하고싶은대로 바꿔서 쓰면 된다.
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%208.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/111280247-f4714f80-867e-11eb-842b-9f95b6f5af53.png)
 
 커넥션 풀을 이용해서 주입을 해보자~ 요즘 각광을 받고 있는 hikarids를 써보자.
 
@@ -411,7 +411,7 @@ maximumPoolSize은 최대 커넥션 개수를 만들겠다 의미
 
 ---
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%209.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/111280250-f4714f80-867e-11eb-85e0-de07c34ef29d.png)
 
 sql쿼리의 결과 값을 보려면 라이브러리를 설치해야 한다. maven repository사이트에 들어가서 log4jdbc-log4j2 검색해서 1.16 소스코드 복사 후 pom.xml에 붙여넣자
 
@@ -466,7 +466,7 @@ sql쿼리의 결과 값을 보려면 라이브러리를 설치해야 한다. mav
 .
 ```
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2010.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/111280252-f509e600-867e-11eb-803e-9e5ab95e4885.png)
 
 log4jdbc.log4j2.properties를 두 개resources라이브러리에 넣어주기
 
@@ -498,11 +498,11 @@ log4jdbc.log4j2.properties를 두 개resources라이브러리에 넣어주기
 
 실행 결과값>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2011.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/111280253-f509e600-867e-11eb-85d6-1fbe29001aff.png)
 
 ---
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2012.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/111280255-f5a27c80-867e-11eb-8198-49989539a530.png)
 
 control 패키지 복사해서 src/main/java에 붙여 넣기 
 
@@ -609,13 +609,13 @@ public class BoardListController {
 
 스프링 라이브러이에서는 jackson라이브러리를 내장하고 있기 때문에 return타입을 스트링이 아니라 객체 타입으로 리턴 해도 된다.
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2013.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/111280257-f5a27c80-867e-11eb-8896-dbb415396888.png)
 
 springmvc 오른쪽 클릭> properties> Web Project Settings에 들어가 Context root 이름 지정
 
 @ResponseBody는 mvc구조를 따르지 않고 컨트롤러가 직접 응답하겠다 의미.
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2014.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/111280258-f63b1300-867e-11eb-9938-20da16bc985c.png)
 
 maven repository> jackson databind 검색> maven소스 복사 후 pom.xml에 붙이기
 
@@ -638,11 +638,11 @@ maven repository> jackson databind 검색> maven소스 복사 후 pom.xml에 붙
 
 실행결과>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2015.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/111280261-f6d3a980-867e-11eb-930b-3a325a73ce5b.png)
 
 ---
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2016.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/111280262-f6d3a980-867e-11eb-93d7-d9d4e9ca8f08.png)
 
 Dispatcher는 Frontcontroller 요청을 받는 일을 하고 그 요청을 controller에게 전달하는데 @Controller 붙여있는 객체를 찾아간다. request가 컨트롤러의 GetMapping메서드에게 전달이 된다.
 
@@ -716,7 +716,7 @@ public class BoardListController {
 
 실행결과>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2017.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/111280264-f76c4000-867e-11eb-99e6-93f872081550.png)
 
 ---
 
@@ -799,7 +799,7 @@ defaultValue 값을 0으로 줬다 하면 게시글이 없을 경우 0번으로 
 
 실행결과>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2018.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/111280269-f76c4000-867e-11eb-90fa-6b2e4546bfb6.png)
 
 - BoardReplyController.java
 
@@ -845,7 +845,7 @@ public class BoardReplyController {
 
 실행결과>
 
-![day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2019.png](day07%20a42f6be2f9d74ed4970050b2de345cf7/Untitled%2019.png)
+![20](https://user-images.githubusercontent.com/63957819/111280270-f804d680-867e-11eb-8d33-648629823aca.png)
 
 - BoardModifyController.java
 
