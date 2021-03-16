@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="RepBoardDAOOracle" project="springmvc" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.my.dao.test.RepBoardDAOOracle" time="0.735">
+    <testcase name="selectAll" classname="com.my.dao.test.RepBoardDAOOracle" time="0.719"/>
+    <testcase name="selectByBoard_no" classname="com.my.dao.test.RepBoardDAOOracle" time="0.016"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,11 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		//1. 스프링 컨테이너(엔진)를 시작시킨다
+		//설정 파일의 bean태그에 있는 클래스타입의 객체가 자동생성되어 
+		//Singleton형태로 관리됨
+
+	}
+
+}
