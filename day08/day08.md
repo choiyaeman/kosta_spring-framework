@@ -1,6 +1,6 @@
 # day08
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled.png](day08%20a0c259420019472397cbda9e13f67307/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111452599-083bb500-8756-11eb-8c21-1c056aded848.png)
 
 db에는 정확히 세팅이 되어 있는데 spring을 통해서 json형태로 결과 값을 가지고 오며는 이전 날짜가 출력이 된다. 버전 충돌 문제로 인해 timezone을 정확하게 설정해줘야 timezone에 해당하는 format으로 바꿔준다. → timezone = "Asia/Seoul"
 
@@ -165,7 +165,7 @@ public class BoardController {
 }
 ```
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%201.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111452605-096ce200-8756-11eb-8e96-c77e578a1ced.png)
 
 BoardController class파일 만들어서 하나로만 다 관리 할 수 있도록 만든다. 나머지 컨트롤러들 다 지우자 
 
@@ -204,7 +204,7 @@ BoardController class파일 만들어서 하나로만 다 관리 할 수 있도�
 
 규격에 맞도록 List → Map타입으로 바꾸자
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%202.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111452608-0a057880-8756-11eb-81cf-e346c9e314c5.png)
 
 - index.html
 
@@ -223,7 +223,7 @@ $(function(){
 
 실행결과>
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%203.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111452610-0a057880-8756-11eb-9adb-c4f037ff6690.png)
 
 ---
 
@@ -290,13 +290,13 @@ $(function(){
 
 새로 project 파일을 만들어보자
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%204.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111452612-0a9e0f00-8756-11eb-89a0-420fd5747390.png)
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%205.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111452613-0a9e0f00-8756-11eb-922a-7bd2819f10d0.png)
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%206.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111452616-0b36a580-8756-11eb-9ac6-d7e841b0aa7f.png)
 
-![day08%20a0c259420019472397cbda9e13f67307/Untitled%207.png](day08%20a0c259420019472397cbda9e13f67307/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111452617-0b36a580-8756-11eb-9242-50afa53453c7.png)
 
 - servlet-context.xml
 
