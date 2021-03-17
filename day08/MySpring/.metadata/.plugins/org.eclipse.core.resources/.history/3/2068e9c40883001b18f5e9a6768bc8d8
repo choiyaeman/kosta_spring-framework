@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean name="b" class="com.my.vo.RepBoard">
+		<property name="board_title" value="제목1"></property>
+	</bean>
+	
+	<bean name="dao" class="com.my.dao.RepBoardDAOOracle"/>
+</beans>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="di"/>
+<aop-project name="boardmvcspring"/>
+<aop-project name="boardbackspring"/>
+</aop-reference-model>

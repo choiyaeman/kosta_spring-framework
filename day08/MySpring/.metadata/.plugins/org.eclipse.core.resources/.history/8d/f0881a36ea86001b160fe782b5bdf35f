@@ -1,0 +1,50 @@
+package control;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.exception.ModifyException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class BoardModifyController {
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	private RepBoardService service;	
+	
+	@RequestMapping("/modify")
+	public ModelAndView modify(RepBoard board, String certify_board_pwd) {	
+		ModelAndView mnv = new ModelAndView();
+		try {
+			service.modify(board, certify_board_pwd);
+			//path = "/WEB-INF/views/modify.jsp";
+			String contextPath = request.getContextPath();
+			response.sendRedirect(contextPath + "/list");
+		} catch (ModifyException e) {
+			//request.setAttribute("exception", e);
+			mnv.addObject("exception", e);
+			e.printStackTrace();
+//			RequestDispatcher rd = request.getRequestDispatcher(path);
+//			rd.forward(request, response);
+			mnv.setViewName("error"); //error.jsp로 알아서 forward
+		}
+		return mnv;
+		
+	}
+
+}
