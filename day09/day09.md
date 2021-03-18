@@ -1,6 +1,6 @@
 # day09
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111590881-092e1e80-880a-11eb-8749-22c4f9255445.png)
 
 컨트롤러가 직접 View로 이동하지 않고 ModelAndView객체만 반환하고 반환한 객체를 Handler가 받는다. HandlerAdapter가 반환 된 ModelAndView객체를 Model분석, View이름 분석한다. 그리고 Handler가 결과를 DispatcherServlet에게 전달한다. DispatcherServlet이 반환 받은 모델 값과 View값을 보고 ViewResolver라는 helper클래스의 도움을 받아서 접두어/view/접미어를 view자원 찾기 일을 해준다.
 
@@ -14,11 +14,11 @@ DispatcherServlet은 헨들러의 도움을 받아서 controller가 갖고 있�
 
 DispatcherServlet 순서는 먼저 (A)요청이 들어오면 DispatcherServlet이 HandlerMapping에게 도와 달라고 요청한다. HandlerMapping은 요청 url을 분석해서 적합한 Controller를 찾아낸다. 그 다음 (ㅠ(B)HandlerAdapter에게 도와달라고 한다. HandlerAdapter는 전달데이터를 매개변수에 맞게 변형후 Controller메서드를 호출하고 컨트롤러가 일을 한다음 값ㅇ르 반환하고 handlerapate가 분석해서 다시 DispatcherServlet받아서 (C)Model을 Request속성 추가하고 (D)ViewResolver에게 도와 달라하고 View자원을 찾고 이동할 case인 경우 (E)View로 이동한다.
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%201.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111590886-0a5f4b80-880a-11eb-88a9-eb7be0c6d8c2.png)
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%202.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111590887-0a5f4b80-880a-11eb-921d-03c5e615e0db.png)
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%203.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111590888-0af7e200-880a-11eb-8214-bd8fc50c8cae.png)
 
 왼쪽은 ModelAndView 오른쪽은 Servlet구조이다.
 
@@ -126,13 +126,13 @@ let frontContextPath = "/boardfrontspring";
 
 실행결과>
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%204.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111590891-0af7e200-880a-11eb-8201-e1066ca6d7fe.png)
 
 비밀번호 범위 초과 시 응답 오류 500이 뜨는 것을 볼 수 있다.
 
 ---
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%205.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111590893-0b907880-880a-11eb-9ace-5dae3a5c2694.png)
 
 하이버네이트는 객체가 만들어짐에 따라 행이 추가되고 제거됨에 따라 삭제되고..자바 객체를 이용해서 행과 연결을 할 수 있기 때문에 SQL구문이 자바 소스에 없다.
 
@@ -144,19 +144,19 @@ let frontContextPath = "/boardfrontspring";
 
 [https://mybatis.org/mybatis-3/ko/getting-started.html](https://mybatis.org/mybatis-3/ko/getting-started.html)
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%206.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111590895-0b907880-880a-11eb-9971-4171c1152869.png)
 
 mybatis이름으로 자바 프로젝트 만들기
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%207.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111590898-0c290f00-880a-11eb-9914-de16d4aa8ede.png)
 
 mybatis오른쪽 클릭> configure> maven 클릭> finish
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%208.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/111590899-0c290f00-880a-11eb-9211-1f6e1929d072.png)
 
 mybatis검색 후> 3.5.4버전 maven 소스 복사해서 pom.xml붙이기
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%209.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/111590900-0cc1a580-880a-11eb-8ccd-c1a1baaddddd.png)
 
 src> file> mybatis-config.xml파일 만들기
 
@@ -275,9 +275,9 @@ public class Test {
 
 실행결과>
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2010.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/111590901-0cc1a580-880a-11eb-86a3-c2811023cca9.png)
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2011.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/111590902-0d5a3c00-880a-11eb-81f0-60c1e5e89d25.png)
 
 namespace에 해당하는 mapper를 찾아간다 id에 해당하는 태그를 찾아서 태그를 갖고 있는 sql구문을 실행한다. 필요한 인자 값은 두 번째 파라미터로 #{aaa}에 자동 대입이 된다. 이렇게 1)sql구문이 처리가 되면 2)처리된 결과 값을 가져와서 resultType에 담아온다. repBoard라는 클래스 타입 객체가 자동 만들어져서 반환이 되는 거다.
 
@@ -375,15 +375,15 @@ public class Test {
 }
 ```
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2012.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/111590904-0df2d280-880a-11eb-8eb0-196191af23bc.png)
 
 selectOne메서드는 객체 하나만 반환하는 구조이기 때문에 예상되는 결과는 한 개 행만 찾아와야 한다. 여러 행일 경우 selectList메서드를 써야 적합하다. 둘 다 검색어에 관련된 메서드이다~
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2013.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/111590906-0df2d280-880a-11eb-9028-31e7106634b9.png)
 
 조건에 만족하는 행을 찾지 못하면 null을 반환한다. 
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2014.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/111590907-0e8b6900-880a-11eb-8c33-2fc47dcc29a9.png)
 
 파라미터 타입이 객체 타입으로 명시가 되어있으면 객체의 프로티명을 정확히 써줘야 한다.
 
@@ -402,7 +402,7 @@ BOARD_TITLE                                                  BOARD_DT
 
 결과> 
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2015.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/111590908-0e8b6900-880a-11eb-97f0-ce1b0a5f4a03.png)
 
 - BoardMapper.xml
 
@@ -436,7 +436,7 @@ try {
 
  실행결과>
 
-![day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2016.png](day09%204203190b120a4ed89f9db020b5a6d4c1/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/111590909-0f23ff80-880a-11eb-9488-1ed7cc062652.png)
 
 - BoardMapper.xml
 
