@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;mybatis.RepBoardMapper&apos; to &apos;RepBoardMapper1&apos;&#x0D;&#x0A;- Original project: &apos;mybatis&apos;&#x0D;&#x0A;- Original element: &apos;mybatis.RepBoardMapper&apos;&#x0D;&#x0A;- Renamed element: &apos;mybatis.RepBoardMapper1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;RepBoardMapper&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;mybatis{RepBoardMapper.java[RepBoardMapper" matchStrategy="1" name="RepBoardMapper1" qualified="false" references="true" similarDeclarations="false" stamp="1616051309536" textual="false" version="1.0"/>
+</session>

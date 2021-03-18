@@ -1,0 +1,66 @@
+package control;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.exception.FindException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class BoardListController {
+	
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	private RepBoardService service; //service객체가 주입되도록 설정
+	
+	@RequestMapping("/list")
+	public ModelAndView list(String word) {
+		String path ="/WEB-INF/views/error.jsp";
+//		request.setCharacterEncoding("utf-8");
+		
+		//1. 요청 전달데이터 얻기
+		//String word = request.getParameter("word");
+//		System.out.println(word);
+		log.info("검색어:" + word);
+		
+		List<RepBoard> list;
+		
+		ModelAndView mnv = new ModelAndView();
+		try {
+			//2. 비지니스로직 호출
+			if(word == null) { //전체검색
+				list = service.findAll();
+			}else { //검색어에 만족하는 검색
+				list = service.findByBoard_titleORBoard_writer(word);
+			}
+			//3. 요청속성으로 호출결과값 추가
+			//request.setAttribute("list", list);
+			mnv.addObject("list", list);
+			//path = "/WEB-INF/views/list.jsp";
+			mnv.setViewName("list"); //view이름만 적어주면 된다
+		} catch (FindException e) {
+			request.setAttribute("exception", e);
+			e.printStackTrace();
+		}
+		//4. View로 이동
+		RequestDispatcher rd = request.getRequestDispatcher(path);
+		rd.forward(request, response);
+	}
+
+}

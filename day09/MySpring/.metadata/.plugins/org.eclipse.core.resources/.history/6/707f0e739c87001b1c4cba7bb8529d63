@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.my.vo.RepBoard;
+
+public class Test {
+
+	public static void main(String[] args) {
+		String resource = "mybatis-config.xml"; //test클래스가 있는 디렉토리~
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource); //getResourceAsStream는 클래스들이 있는 경로 기준으로 xml리소스 파일을 찾아서 리턴을 한다는 뜻
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			SqlSession session = sqlSessionFactory.openSession();
+			RepBoard b = session.selectOne("com.my.vo.RepBoard.selectByBoard_no", 1); //mapper네임과 아이디
+			System.out.println(b.getBoard_title()+":"+b.getBoard_writer());
+//			System.out.println(b);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

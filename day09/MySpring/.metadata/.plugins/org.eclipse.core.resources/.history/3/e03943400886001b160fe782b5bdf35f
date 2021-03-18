@@ -1,0 +1,66 @@
+package control;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.my.exception.FindException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+@Controller
+public class BoardListController {
+	private static final long serialVersionUID = 1L;
+	//private RepBoardService service = new RepBoardService();//에러발생
+	//private RepBoardService service = RepBoardService.getInstance(); //서비스 객체생성
+	@Autowired
+	private RepBoardService service;
+	
+	//@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@GetMapping(value = "/list")
+	/*public String execute(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception{
+		
+		String word = request.getParameter("word");
+		System.out.println("검색어:" + word);
+		List<RepBoard> list;
+		ObjectMapper mapper = new ObjectMapper();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(df);
+		try {
+			if(word == null) {
+				list = service.findAll();
+			}else {
+				list = service.findByBoard_titleORBoard_writer(word);
+			}
+			Map<String, Object> map = new HashMap<>();
+			map.put("status", 1);
+			map.put("list", list);
+			//out.print(mapper.writeValueAsString(map));
+			return mapper.writeValueAsString(map);
+		} catch (FindException e) {
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<>();
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+			//out.print(mapper.writeValueAsString(map));
+			return mapper.writeValueAsString(map);
+		}
+		
+	}*/
+}

@@ -1,0 +1,92 @@
+package com.my.service;
+
+import java.util.List;
+
+import com.my.dao.RepBoardDAO;
+import com.my.dao.RepBoardDAOOracle;
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
+import com.my.vo.RepBoard;
+
+public class RepBoardService {
+	private RepBoardDAO boardDAO;
+	
+	public RepBoardDAO getBoardDAO() {
+		return boardDAO;
+	}
+	public void setBoardDAO(RepBoardDAO boardDAO) {
+		this.boardDAO = boardDAO;
+	}
+	
+	private static RepBoardService rbs = new RepBoardService();
+	//public RepBoardService(){
+	private RepBoardService() { //�쇅遺��뿉�꽌 RepBoardService 媛앹껜 �깮�꽦�븯吏� 紐삵븯寃� private�쑝濡� �꽕�젙
+		this.boardDAO = new RepBoardDAOOracle();//?
+	}
+	public static RepBoardService getInstance() { //�겢�옒�뒪 �씠由� �젏�쑝濡� �궗�슜�븯湲곗쐞�빐 static�쑝濡� �꽑�뼵, �늻援щ굹 �젒洹쇳븷 �닔 �엳�룄濡� public�꽑�뼵
+		return rbs;
+	}
+	/**
+	 * 寃뚯떆湲�(�썝湲�)�쓣  異붽��븳�떎
+	 * @param board 遺�紐④�踰덊샇媛� 0�씤 寃뚯떆臾�
+	 * @throws AddException
+	 */
+	public void writeBoard(RepBoard board) throws AddException{
+		if(board.getParent_no() != 0) {
+			board.setParent_no(0);
+		}
+		boardDAO.insert(board);
+	}
+	/**
+	 * �떟湲��쓣 異붽��븳�떎
+	 * @param board 遺�紐④�踰덊샇瑜� �룷�븿�븳 寃뚯떆臾�
+	 * @throws AddException 遺�紐④�踰덊샇媛� 0�씠硫� �삁�쇅諛쒖깮�븳�떎
+	 */
+	public void writeReply(RepBoard board) throws AddException{
+		if(board.getParent_no() == 0) {
+			throw new AddException("遺�紐④�踰덊샇媛� �뾾�뒿�땲�떎");
+		}
+		boardDAO.insert(board);
+	}
+	/**
+	 * 寃뚯떆臾쇱쓣 �쟾泥� 寃��깋�븳�떎
+	 * @return 寃뚯떆臾쇰뱾
+	 * @throws FindException ���옣�냼泥섎━臾몄젣媛� 諛쒖깮�븯嫄곕굹 寃뚯떆湲��씠 �뾾�쓣�븣 �삁�쇅媛� 諛쒖깮�븳�떎
+	 */
+	public List<RepBoard> findAll() throws FindException{
+		return boardDAO.selectAll();
+	}
+	/**
+	 * 寃뚯떆臾쇰쾲�샇�뿉 �빐�떦�븯�뒗 寃뚯떆臾쇱쓣 寃��깋�븯怨�,
+	 * 議고쉶�닔瑜� 1利앷��븳�떎
+	 * @param board_no 寃뚯떆臾쇰쾲�샇
+	 * @return
+	 * @throws FindException
+	 */
+	public RepBoard findByBoard_no(int board_no) throws FindException{
+		RepBoard board = boardDAO.selectByBoard_no(board_no);
+		try {
+			boardDAO.updateBoardCnt(board_no);
+		} catch (ModifyException e) {
+			throw new FindException(e.getMessage());
+		}
+		return board;
+	}
+	/**
+	 * 寃��깋�뼱�뿉 留뚯”�븯�뒗 寃뚯떆臾쇰뱾�쓣 寃��깋�븳�떎.
+	 * @param word 寃��깋�뼱. 湲��젣紐� �삉�뒗 �옉�꽦�옄
+	 * @return 寃뚯떆臾쇰뱾
+	 * @throws FindException 寃��깋�뼱�뿉 留뚯”�븯�뒗 寃뚯떆臾쇱씠 �뾾�쑝硫� �삁�쇅媛� 諛쒖깮�븳�떎
+	 */
+	public List<RepBoard> findByBoard_titleORBoard_writer(String word) throws FindException{
+		return boardDAO.selectByBoard_titleORBoard_writer(word);
+	}
+	public void modify(RepBoard board, String board_pwd) throws ModifyException{
+		boardDAO.update(board, board_pwd);
+	}
+	public void remove(int board_no, String board_pwd) throws RemoveException{
+		boardDAO.delete(board_no, board_pwd);
+	}
+}

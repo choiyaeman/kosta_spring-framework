@@ -1,0 +1,9 @@
+
+public class Test {
+
+	public static void main(String[] args) {
+		//1. 스프링 컨테이너(엔진)을 시작시킨다.
+
+	}
+
+}

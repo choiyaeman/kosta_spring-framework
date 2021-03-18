@@ -1,0 +1,50 @@
+package control;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.my.exception.ModifyException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+
+public class BoardModifyController implements Controller {
+	private static final long serialVersionUID = 1L;
+	private RepBoardService service = RepBoardService.getInstance();	
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		String strBoard_no = request.getParameter("board_no");
+		int board_no = Integer.parseInt(strBoard_no);
+		String board_title = request.getParameter("board_title");
+		String certify_board_pwd = request.getParameter("certify_board_pwd");
+		String board_pwd = request.getParameter("board_pwd");
+		RepBoard board = new RepBoard();
+		board.setBoard_no(board_no);
+		board.setBoard_title(board_title);
+		board.setBoard_pwd(board_pwd);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(df);
+		Map<String, Object> map = new HashMap<>();
+		try {
+			service.modify(board, certify_board_pwd);
+			map.put("status", 1);
+			
+		} catch (ModifyException e) {
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return mapper.writeValueAsString(map);
+	}
+}

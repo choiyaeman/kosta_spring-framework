@@ -1,0 +1,65 @@
+package com.my.dao.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.my.dao.RepBoardDAO;
+import com.my.exception.FindException;
+import com.my.vo.RepBoard;
+
+//Spring용 단위 테스트
+//@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class) //Junit4인 경우
+
+//Spring 컨테이너용 XML파일 설정
+@ContextConfiguration(locations={
+		"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+
+public class RepBoardDAOOracle {
+	@Autowired
+	@Qualifier("oracle")
+	private RepBoardDAO dao;
+	//private RepBoardDAO dao = new com.my.dao.RepBoardDAOOracle();
+	@Test
+	public void selectByBoard_no() {		
+		int board_no = 44;	
+		int expParent_no = 0;
+		String expBoard_title = "어려워ㅠㅠ";
+		String expBoard_writer = "최예만";
+		try {
+			RepBoard b = dao.selectByBoard_no(board_no);
+			assertNotNull(b); //b변수가 반드시 존재해야 한다.
+			
+//			assertEquals(expParent_no, b.getParent_no());
+			assertTrue(expParent_no == b.getParent_no());
+			assertEquals(expBoard_title, b.getBoard_title());
+			assertEquals(expBoard_writer, b.getBoard_writer());
+			
+		} catch (FindException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void selectAll() throws FindException {
+		RepBoardDAO dao = new com.my.dao.RepBoardDAOOracle();
+		
+		List<RepBoard> list = dao.selectAll();
+//		System.out.println(list.size());
+		int expListSize =  7;
+		assertTrue(expListSize == list.size());
+	}
+
+}
