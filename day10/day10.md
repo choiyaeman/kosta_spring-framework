@@ -1,10 +1,11 @@
 # day10
 
-![1](https://user-images.githubusercontent.com/63957819/111795540-a5d7e580-890a-11eb-97f7-a69204c3e9b1.png)   
+![1](https://user-images.githubusercontent.com/63957819/111795540-a5d7e580-890a-11eb-97f7-a69204c3e9b1.png) 
 
 interface가 mapper파일을 대신할 수 있다.
 
 int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다. 
+
 
 ![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
 
@@ -14,11 +15,13 @@ int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇
 
 한번에 여려 행을 insert할 경우 `foreach` 태그를 이용해서 배열로 전달된 파라미터를 반복문으로 처리 할 수 있다.
 
+
 ![3](https://user-images.githubusercontent.com/63957819/111795545-a7a1a900-890a-11eb-9236-ec65d9a51937.png)
 
 ?바인드 변수는 값의 위치에만 올 수 있다. 즉 value에만 올 수 있다. 태그가 점점 많아지면 많아질수록 관리하기 힘들어진다. 하나로 합치는데 오름차순을 할 것인지 내림차순으로 할 것인지 물음표로 한다 하면 안된다. 물음표는 값의 위치에만 올 수 있기 때문이다. 그러므로 #{} 못쓴다.
 
 문자열로 대신하고 싶을 때는 $를 쓰자
+
 
 ![4](https://user-images.githubusercontent.com/63957819/111795547-a7a1a900-890a-11eb-9c64-e779049f4b48.png)
 
@@ -67,13 +70,16 @@ resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계
 
 위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.
 
+
 ![7](https://user-images.githubusercontent.com/63957819/111795554-a8d2d600-890a-11eb-90b7-730cb9c34ea7.png)
 
 →엄청 복잡..
 
+
 ![8](https://user-images.githubusercontent.com/63957819/111795555-a8d2d600-890a-11eb-9821-a058ca338ba7.png)
 
 →resultMap쓰자
+
 
 ```java
 **주문자id에 해당 주문내역 조회하기**
@@ -180,6 +186,7 @@ public class Test {
 
 총 행 수는 6개인데 OrderInfo객체의 개수는 3개인 이유는 OrderInfo객체 하나에 OrderIine이 여러 개 들어갈  수 있기 때문이다.
 
+
 ---
 
 ![13](https://user-images.githubusercontent.com/63957819/111795564-aa9c9980-890a-11eb-9848-3cff21c55d90.png)
@@ -193,6 +200,7 @@ public class Test {
 ---
 
 maven repository> mybatis, mybatis-spring 둘다 복사해서 복붙
+
 
 ![17](https://user-images.githubusercontent.com/63957819/111795573-abcdc680-890a-11eb-9c11-64f3c163bbdd.png)
 
