@@ -1,0 +1,28 @@
+package com.my.dao.test;
+
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+
+import com.my.dao.RepBoardDAO;
+import com.my.exception.FindException;
+import com.my.vo.RepBoard;
+
+public class RepBoardDAOOracle {
+
+	@Test
+	public void selectByBoard_no() {
+		RepBoardDAO dao = new com.my.dao.RepBoardDAOOracle();
+		int board_no = 44;
+		int expParent_no = 0;
+		String expBoard_title = "어려워";
+		String expBoard_writer = "최예만";
+		try {
+			RepBoard b = dao.selectByBoard_no(board_no);
+		} catch (FindException e) {
+			e.printStackTrace();
+		}
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!--
+	<bean name="b" class="com.my.vo.RepBoard">
+		<property name="board_title" value="제목1"></property>
+	</bean>
+	
+	<bean name="dao" class="com.my.dao.RepBoardDAOOracle"/>
+	<bean name="service" class="com.my.service.RepBoardService">
+		<property name="boardDAO" ref="dao"></property>
+	</bean>
+	-->
+	<!-- com.my.vo패키지의 
+	     Component 어노테이션이 설정된 클래스들을 찾아 스프링빈으로 등록한다
+	     @Component, @Service, @Repository, @Controller, @RestController..
+	         @Autowired등의
+	     어노테이션 사용가능
+	-->
+	<context:component-scan base-package="com.my.vo"></context:component-scan>
+	<context:component-scan base-package="com.my.dao"></context:component-scan>
+	<context:component-scan base-package="com.my.service"></context:component-scan>
+	
+	<!--component-scan태그없이도 어노테이션 사용하려면 아래 태그가 필요  -->
+	<context:annotation-config></context:annotation-config>
+	
+</beans>

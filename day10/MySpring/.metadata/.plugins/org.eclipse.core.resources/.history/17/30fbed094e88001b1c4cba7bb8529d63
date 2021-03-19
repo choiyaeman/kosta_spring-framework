@@ -1,0 +1,80 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.my.vo.RepBoard;
+
+public class Test {
+
+	public static void main(String[] args) {
+		//XML에서 SqlSessionFactory 빌드하기
+		String resource = "mybatis-config.xml"; //test클래스가 있는 디렉토리~
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource); //getResourceAsStream는 클래스들이 있는 경로 기준으로 xml리소스 파일을 찾아서 리턴을 한다는 뜻
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			
+			//SqlSessionFactory에서 SqlSession 만들기
+			SqlSession session = sqlSessionFactory.openSession();
+			
+			//Query결과가 1개의 행인 경우에는 selectOne메서드를 호출한다
+			//0개 행이 검색된 경우는 null
+//			RepBoard b = session.selectOne("mybatis.RepBoardMapper.selectByBoard_no", 1); //mapper네임과 아이디
+//			System.out.println(b.getBoard_title()+":"+b.getBoard_writer());
+//			System.out.println(b);
+			
+			//Query결과가 여러개의 행인 경우에는 selectList메서드를 호출한다
+			//0개 행이 검색된 경우는 size가 0인 list를 반환한다(null 아님)
+			Map<String, String> map1 = new HashMap<>();
+			map1.put("word", "%김");
+			map1.put("o", "DESC"); //최신글 보기위해 내림차순 설정
+			List<RepBoard> list = session.selectList("mybatis.RepBoardMapper.selectByBoard_titleORBoard_writer", map1);
+			for(RepBoard b1: list) {
+				System.out.println(b1.getBoard_title()+":"+b1.getBoard_writer());
+			}
+//			RepBoard b2 = new RepBoard(); //RepBoard타입 b2객체 생성
+//			b2.setBoard_title("제목Mybatis");
+//			b2.setBoard_writer("mybatis");
+//			b2.setBoard_pwd("1");
+//			session.insert("mybatis.RepBoardMapper.insert", b2);
+			
+//			Map<String, Object> map = new HashMap<>();
+//			map.put("parent_no", 0);
+//			map.put("board_title", "제목mybatis1");
+//			map.put("board_writer", "mybatis1");
+//			map.put("board_pwd", "1");
+//			session.insert("mybatis.RepBoardMapper.insert", map);
+			try {
+				int rowcnt = session.update("mybatis.RepBoardMapper.updateBoardCnt", 1);
+				System.out.println("수정 건수:" + rowcnt); //0? 1
+				//session.commit();
+			}catch(Exception e) { //실행도중 문제 발생하면 프로그램이 죽어버린다 그러므로 예외 발생하면 그 즉시 catch구문으로 이동시켜 프로그램이 죽지 않도록 해야한다.
+				e.printStackTrace();
+			}
+			try {
+				Map<String, Object> map = new HashMap();
+				map.put("board_no", 93);//게시글번호
+				map.put("board_pwd", 1);//비밀번호
+				int rowcnt = session.delete("mybatis.RepBoardMapper.delete", map); //--게시글 삭제
+				if(rowcnt == 0) {
+					System.out.println("글번호가 없거나 비밀번호가 다릅니다.");
+				} else {
+					session.commit();	
+				}
+			}catch(Exception e) { //실행도중 문제 발생하면 프로그램이 죽어버린다 그러므로 예외 발생하면 그 즉시 catch구문으로 이동시켜 프로그램이 죽지 않도록 해야한다.
+					e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
