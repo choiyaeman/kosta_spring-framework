@@ -12,7 +12,7 @@ Controller가 반환하는 타입이 void타입인 경우 헨들러가 요청 ur
 
 DispatcherServlet은 헨들러의 도움을 받아서 controller가 갖고 있는 매개변수 타입을 핸들러가 분석해서 전달 데이터를 매개변수에 맞게 변형 후 Controller메서드를 호출한다.
 
-DispatcherServlet 순서는 먼저 (A)요청이 들어오면 DispatcherServlet이 HandlerMapping에게 도와 달라고 요청한다. HandlerMapping은 요청 url을 분석해서 적합한 Controller를 찾아낸다. 그 다음 (ㅠ(B)HandlerAdapter에게 도와달라고 한다. HandlerAdapter는 전달데이터를 매개변수에 맞게 변형후 Controller메서드를 호출하고 컨트롤러가 일을 한다음 값ㅇ르 반환하고 handlerapate가 분석해서 다시 DispatcherServlet받아서 (C)Model을 Request속성 추가하고 (D)ViewResolver에게 도와 달라하고 View자원을 찾고 이동할 case인 경우 (E)View로 이동한다.
+DispatcherServlet 순서는 먼저 (A)요청이 들어오면 DispatcherServlet이 HandlerMapping에게 도와 달라고 요청한다. HandlerMapping은 요청 url을 분석해서 적합한 Controller를 찾아낸다. 그 다음 (B)HandlerAdapter에게 도와달라고 한다. HandlerAdapter는 전달데이터를 매개변수에 맞게 변형후 Controller메서드를 호출하고 컨트롤러가 일을 한다음 값 반환하고 handlerapate가 분석해서 다시 DispatcherServlet받아서 (C)Model을 Request속성 추가하고 (D)ViewResolver에게 도와 달라하고 View자원을 찾고 이동할 case인 경우 (E)View로 이동한다.
 
 ![2](https://user-images.githubusercontent.com/63957819/111590886-0a5f4b80-880a-11eb-88a9-eb7be0c6d8c2.png)
 
