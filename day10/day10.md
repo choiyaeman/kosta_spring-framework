@@ -6,6 +6,7 @@ interface가 mapper파일을 대신할 수 있다.
 
 int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다.
 #
+#
 ![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
 
 `resultType` : 자료구조 형태로 리턴 해야 할 경우 즉 여러 행을 검색하는 경우 컬렉션타입자체가아닌 컬렉션이 포함된 타입이 될 수 있다. 즉 리스트 타입이나 컬렉션 타입으로 명시하는 게 아니라 자료형으로 명시해줘야 한다.
@@ -13,15 +14,14 @@ int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇
 `insert, update and delete` : dml구문을 처리하는 태그들
 
 한번에 여려 행을 insert할 경우 `foreach` 태그를 이용해서 배열로 전달된 파라미터를 반복문으로 처리 할 수 있다.  
-
-
+#
 ![3](https://user-images.githubusercontent.com/63957819/111795545-a7a1a900-890a-11eb-9236-ec65d9a51937.png)
 
 ?바인드 변수는 값의 위치에만 올 수 있다. 즉 value에만 올 수 있다. 태그가 점점 많아지면 많아질수록 관리하기 힘들어진다. 하나로 합치는데 오름차순을 할 것인지 내림차순으로 할 것인지 물음표로 한다 하면 안된다. 물음표는 값의 위치에만 올 수 있기 때문이다. 그러므로 #{} 못쓴다.
 
 문자열로 대신하고 싶을 때는 $를 쓰자  
 
-
+#
 ![4](https://user-images.githubusercontent.com/63957819/111795547-a7a1a900-890a-11eb-9c64-e779049f4b48.png)
 
 - boardMapper.xml
