@@ -4,7 +4,7 @@
 
 >interface가 mapper파일을 대신할 수 있다.
 
-int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다.
+>int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다.
 #
 ![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
 
@@ -67,8 +67,7 @@ int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇
 resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계를 갖고 있듯이 join을 쓸텐데 여러 컬럼들을 가지고 올 경우라면 resultMap을 써야 한다. 
 
 위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.  
-
-
+#
 ![7](https://user-images.githubusercontent.com/63957819/111795554-a8d2d600-890a-11eb-90b7-730cb9c34ea7.png)
 
 →엄청 복잡..  
