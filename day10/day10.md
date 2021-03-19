@@ -64,15 +64,12 @@
 
 ![6](https://user-images.githubusercontent.com/63957819/111795552-a83a3f80-890a-11eb-9093-3dca838a3fd2.png)
 
-resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계를 갖고 있듯이 join을 쓸텐데 여러 컬럼들을 가지고 올 경우라면 resultMap을 써야 한다. 
-
-위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.  
+> resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계를 갖고 있듯이 join을 쓸텐데 여러 컬럼들을 가지고 올 경우라면 resultMap을 써야 한다. 위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.  
 #
 ![7](https://user-images.githubusercontent.com/63957819/111795554-a8d2d600-890a-11eb-90b7-730cb9c34ea7.png)
 
 →엄청 복잡..  
-
-
+#
 ![8](https://user-images.githubusercontent.com/63957819/111795555-a8d2d600-890a-11eb-9821-a058ca338ba7.png)
 
 →resultMap쓰자  
