@@ -4,7 +4,8 @@
 
 interface가 mapper파일을 대신할 수 있다.
 
-int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다.   
+int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다.  
+
 
 
 ![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
