@@ -8,18 +8,14 @@
 #
 ![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
 
-`resultType` : 자료구조 형태로 리턴 해야 할 경우 즉 여러 행을 검색하는 경우 컬렉션타입자체가아닌 컬렉션이 포함된 타입이 될 수 있다. 즉 리스트 타입이나 컬렉션 타입으로 명시하는 게 아니라 자료형으로 명시해줘야 한다.
-
-`insert, update and delete` : dml구문을 처리하는 태그들
-
-한번에 여려 행을 insert할 경우 `foreach` 태그를 이용해서 배열로 전달된 파라미터를 반복문으로 처리 할 수 있다.  
+>`resultType` : 자료구조 형태로 리턴 해야 할 경우 즉 여러 행을 검색하는 경우 컬렉션타입자체가아닌 컬렉션이 포함된 타입이 될 수 있다. 즉 리스트 타입이나 컬렉션 타입으로 명시하는 게 아니라 자료형으로 명시해줘야 한다.
+>`insert, update and delete` : dml구문을 처리하는 태그들
+>한번에 여려 행을 insert할 경우 `foreach` 태그를 이용해서 배열로 전달된 파라미터를 반복문으로 처리 할 수 있다.  
 #
 ![3](https://user-images.githubusercontent.com/63957819/111795545-a7a1a900-890a-11eb-9236-ec65d9a51937.png)
-
-?바인드 변수는 값의 위치에만 올 수 있다. 즉 value에만 올 수 있다. 태그가 점점 많아지면 많아질수록 관리하기 힘들어진다. 하나로 합치는데 오름차순을 할 것인지 내림차순으로 할 것인지 물음표로 한다 하면 안된다. 물음표는 값의 위치에만 올 수 있기 때문이다. 그러므로 #{} 못쓴다.
+> ?바인드 변수는 값의 위치에만 올 수 있다. 즉 value에만 올 수 있다. 태그가 점점 많아지면 많아질수록 관리하기 힘들어진다. 하나로 합치는데 오름차순을 할 것인지 내림차순으로 할 것인지 물음표로 한다 하면 안된다. 물음표는 값의 위치에만 올 수 있기 때문이다. 그러므로 #{} 못쓴다.
 
 문자열로 대신하고 싶을 때는 $를 쓰자  
-
 #
 ![4](https://user-images.githubusercontent.com/63957819/111795547-a7a1a900-890a-11eb-9c64-e779049f4b48.png)
 
@@ -67,12 +63,11 @@
 > resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계를 갖고 있듯이 join을 쓸텐데 여러 컬럼들을 가지고 올 경우라면 resultMap을 써야 한다. 위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.  
 #
 ![7](https://user-images.githubusercontent.com/63957819/111795554-a8d2d600-890a-11eb-90b7-730cb9c34ea7.png)
-
-→엄청 복잡..  
+→엄청 복잡..
 #
 ![8](https://user-images.githubusercontent.com/63957819/111795555-a8d2d600-890a-11eb-9821-a058ca338ba7.png)
-
-→resultMap쓰자  
+→resultMap쓰자
+#
 
 
 ```java
@@ -86,7 +81,7 @@ WHERE info.order_id='id2'
 ```
 
 ![9](https://user-images.githubusercontent.com/63957819/111795556-a96b6c80-890a-11eb-9d9b-9a8d85a7f6fc.png)
-
+#
 - mybatis-config.xml
 
 ```java
@@ -130,15 +125,13 @@ WHERE info.order_id='id2'
   	</select>
   </mapper>
 ```
-
+#
 ![10](https://user-images.githubusercontent.com/63957819/111795558-a96b6c80-890a-11eb-8a0e-9b9dae5ee89d.png)
 
-`association`은 1:1의 관계 `collection`은 1:N의 관계이다.
-
-OrderInfo를 1로보고 Orderlines를 N으로 본다.
-
-`autoMapping="true"` 컬럼명과 프로퍼티명 같을 경우 생략 가능  
-
+> `association`은 1:1의 관계 `collection`은 1:N의 관계이다.
+> OrderInfo를 1로보고 Orderlines를 N으로 본다.
+> `autoMapping="true"` 컬럼명과 프로퍼티명 같을 경우 생략 가능  
+#
 - Test.java
 
 ```java
@@ -177,10 +170,8 @@ public class Test {
 ![11](https://user-images.githubusercontent.com/63957819/111795559-aa040300-890a-11eb-89da-b5d0d97a8ad7.png)
 
 ![12](https://user-images.githubusercontent.com/63957819/111795562-aa9c9980-890a-11eb-9d0d-ccd75c372a74.png)
-
-총 행 수는 6개인데 OrderInfo객체의 개수는 3개인 이유는 OrderInfo객체 하나에 OrderIine이 여러 개 들어갈  수 있기 때문이다.  
-
-
+> 총 행 수는 6개인데 OrderInfo객체의 개수는 3개인 이유는 OrderInfo객체 하나에 OrderIine이 여러 개 들어갈  수 있기 때문이다.  
+#
 ---
 
 ![13](https://user-images.githubusercontent.com/63957819/111795564-aa9c9980-890a-11eb-9848-3cff21c55d90.png)
@@ -194,8 +185,7 @@ public class Test {
 ---
 
 maven repository> mybatis, mybatis-spring 둘다 복사해서 복붙  
-
-
+#
 ![17](https://user-images.githubusercontent.com/63957819/111795573-abcdc680-890a-11eb-9c11-64f3c163bbdd.png)
 
 - boardbackspring/pom.xml
@@ -223,7 +213,7 @@ maven repository> mybatis, mybatis-spring 둘다 복사해서 복붙
 ![18](https://user-images.githubusercontent.com/63957819/111795576-ac665d00-890a-11eb-833d-b462078b5ead.png)
 
 mybatis프로젝트에 있는 mybatis-config.xml, boardMapper.xml을 mybackspring src/main/java에 붙여 넣기  
-
+#
 - root-context.xml
 
 ```java
@@ -238,11 +228,11 @@ mybatis프로젝트에 있는 mybatis-config.xml, boardMapper.xml을 mybacksprin
 ..
 .
 ```
-
+#
 ![19](https://user-images.githubusercontent.com/63957819/111795578-ac665d00-890a-11eb-9e87-dbad32088a5a.png)
 
 ![20](https://user-images.githubusercontent.com/63957819/111795579-acfef380-890a-11eb-9320-5dfc9e9a33a1.png)
-
+#
 - RepBoardDAOOracle.java
 
 ```java
@@ -372,7 +362,7 @@ public class RepBoardDAOOracle {
 실행결과>
 
 ![21](https://user-images.githubusercontent.com/63957819/111795582-acfef380-890a-11eb-9113-60c4a9c434e0.png)
-
+#
 ---
 
 - RepBoardDAOOracle.java
