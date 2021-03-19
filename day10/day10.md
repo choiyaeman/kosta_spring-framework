@@ -1,12 +1,12 @@
 # day10
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111795540-a5d7e580-890a-11eb-97f7-a69204c3e9b1.png)
 
 interface가 mapper파일을 대신할 수 있다.
 
 int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇게 mybatis에는 내장된 별칭이 설정 되어있다. resultType 또는 resultMap 속성은 반드시 있어야 한다. 
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%201.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111795543-a7091280-890a-11eb-9add-92fd8ab8462e.png)
 
 `resultType` : 자료구조 형태로 리턴 해야 할 경우 즉 여러 행을 검색하는 경우 컬렉션타입자체가아닌 컬렉션이 포함된 타입이 될 수 있다. 즉 리스트 타입이나 컬렉션 타입으로 명시하는 게 아니라 자료형으로 명시해줘야 한다.
 
@@ -14,13 +14,13 @@ int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇
 
 한번에 여려 행을 insert할 경우 `foreach` 태그를 이용해서 배열로 전달된 파라미터를 반복문으로 처리 할 수 있다.
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%202.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111795545-a7a1a900-890a-11eb-9236-ec65d9a51937.png)
 
 ?바인드 변수는 값의 위치에만 올 수 있다. 즉 value에만 올 수 있다. 태그가 점점 많아지면 많아질수록 관리하기 힘들어진다. 하나로 합치는데 오름차순을 할 것인지 내림차순으로 할 것인지 물음표로 한다 하면 안된다. 물음표는 값의 위치에만 올 수 있기 때문이다. 그러므로 #{} 못쓴다.
 
 문자열로 대신하고 싶을 때는 $를 쓰자
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%203.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111795547-a7a1a900-890a-11eb-9c64-e779049f4b48.png)
 
 - boardMapper.xml
 
@@ -57,21 +57,21 @@ int라는 별칭은 원래의 자료형이 java.lang.Integer타입이다. 이렇
 
 실행결과>
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%204.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111795548-a83a3f80-890a-11eb-8ec1-fed07ca8dacb.png)
 
 ---
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%205.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111795552-a83a3f80-890a-11eb-9093-3dca838a3fd2.png)
 
 resultMap은 고객과 상품 주문 테이블을 생각 해보면 여러 관계를 갖고 있듯이 join을 쓸텐데 여러 컬럼들을 가지고 올 경우라면 resultMap을 써야 한다. 
 
 위의 그림을 보면 resultType을 특정 클래스로 설정하면 order_no만 쓰고 끝나버린다. 검색해온 컬럼들이 자동 매핑이 되도록 하려면 resultMap이 필요하다.
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%206.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111795554-a8d2d600-890a-11eb-90b7-730cb9c34ea7.png)
 
 →엄청 복잡..
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%207.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111795555-a8d2d600-890a-11eb-9821-a058ca338ba7.png)
 
 →resultMap쓰자
 
@@ -85,7 +85,7 @@ FROM order_info info JOIN order_line line ON (info.order_no = line.order_no)
 WHERE info.order_id='id2'
 ```
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%208.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/111795556-a96b6c80-890a-11eb-9d9b-9a8d85a7f6fc.png)
 
 - mybatis-config.xml
 
@@ -131,7 +131,7 @@ WHERE info.order_id='id2'
   </mapper>
 ```
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%209.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/111795558-a96b6c80-890a-11eb-8a0e-9b9dae5ee89d.png)
 
 `association`은 1:1의 관계 `collection`은 1:N의 관계이다.
 
@@ -174,27 +174,27 @@ public class Test {
 
 실행결과>
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2010.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/111795559-aa040300-890a-11eb-89da-b5d0d97a8ad7.png)
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2011.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/111795562-aa9c9980-890a-11eb-9d0d-ccd75c372a74.png)
 
 총 행 수는 6개인데 OrderInfo객체의 개수는 3개인 이유는 OrderInfo객체 하나에 OrderIine이 여러 개 들어갈  수 있기 때문이다.
 
 ---
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2012.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/111795564-aa9c9980-890a-11eb-9848-3cff21c55d90.png)
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2013.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/111795567-ab353000-890a-11eb-93d8-804976b2e14c.png)
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2014.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/111795569-ab353000-890a-11eb-8b41-55866221b1cf.png)
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2015.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/111795571-abcdc680-890a-11eb-9592-d408348c8be3.png)
 
 ---
 
 maven repository> mybatis, mybatis-spring 둘다 복사해서 복붙
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2016.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/111795573-abcdc680-890a-11eb-9c11-64f3c163bbdd.png)
 
 - boardbackspring/pom.xml
 
@@ -218,7 +218,7 @@ maven repository> mybatis, mybatis-spring 둘다 복사해서 복붙
 .
 ```
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2017.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/111795576-ac665d00-890a-11eb-833d-b462078b5ead.png)
 
 mybatis프로젝트에 있는 mybatis-config.xml, boardMapper.xml을 mybackspring src/main/java에 붙여 넣기
 
@@ -237,9 +237,9 @@ mybatis프로젝트에 있는 mybatis-config.xml, boardMapper.xml을 mybacksprin
 .
 ```
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2018.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/111795578-ac665d00-890a-11eb-9e87-dbad32088a5a.png)
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2019.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2019.png)
+![20](https://user-images.githubusercontent.com/63957819/111795579-acfef380-890a-11eb-9320-5dfc9e9a33a1.png)
 
 - RepBoardDAOOracle.java
 
@@ -369,7 +369,7 @@ public class RepBoardDAOOracle {
 
 실행결과>
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2020.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2020.png)
+![21](https://user-images.githubusercontent.com/63957819/111795582-acfef380-890a-11eb-9113-60c4a9c434e0.png)
 
 ---
 
@@ -838,4 +838,4 @@ public class RepBoardDAOOracle {
 
 실행결과>
 
-![day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2021.png](day10%20a449bfebf1884f1f9d3292ee5b457507/Untitled%2021.png)
+![22](https://user-images.githubusercontent.com/63957819/111795583-ad978a00-890a-11eb-8e9b-2a7481c6c5ea.png)
