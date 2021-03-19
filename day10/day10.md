@@ -1,6 +1,6 @@
 # day10
 
-![1](https://user-images.githubusercontent.com/63957819/111795540-a5d7e580-890a-11eb-97f7-a69204c3e9b1.png)
+![1](https://user-images.githubusercontent.com/63957819/111795540-a5d7e580-890a-11eb-97f7-a69204c3e9b1.png)  
 
 interface가 mapper파일을 대신할 수 있다.
 
