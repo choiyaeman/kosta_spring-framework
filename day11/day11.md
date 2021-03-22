@@ -72,23 +72,23 @@ openSession메서드 이용 시 unchecked exception이 발생할 수 있다. 알
 
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/111975952-7e6c5d00-8b44-11eb-84e1-78d7c33ac605.png)
 
 오라클 데이터베이스 사용하고 있는 커넥션풀이 있는데 그게 무엇이냐면 HikaryCP이다. 이 객체는 DataSource로부터 상속 받은 하위 클래스이다.  총 다섯 개의 커넥션 객체가 미리 준비 되어있는 거다. SqlSessionFactory라는 이름으로 Spring Container에 의해서 관리되고 dataSource 객체도 관리가 된다. 스프링 컨테이너를 다른 말로 스프링 엔진, Web ApplicationContext 객체라고도 부른다.
 
 mybatis-config.xml 파일에서 <environments>태그의 역할은 mybatis가 연결 할 데이터베이스용 정보이다. 스프링 컨테이너에 의해서 관리되는 Mybatis용 객체는 hikaryCP를 참조해서 쓰고 있으므로 environments부분은 더 이상 필요 없다.
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%201.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/111975961-7f9d8a00-8b44-11eb-8d3a-d252fed9ed95.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%202.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/111975964-7f9d8a00-8b44-11eb-81bd-b96277748c33.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%203.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/111975966-80362080-8b44-11eb-9ede-170d487eea68.png)
 
 클라이언트가 메뉴 로그인을 클릭 시 요청이 되고 <html>내용이 클라이언트에게 응답이 되고 렌더링이 되어서 로그인 버튼이 클릭 되었을 때 로그인 url을 또 요청한다. 
 
 요청이 들어올 때 요청 url이 서로 값이 같다.. 실제 자원은 다르나 DispatcherServlet놈이 같은 url로 이해 해버린다. 
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%204.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/111975968-80362080-8b44-11eb-926c-aeca2f363de0.png)
 
 - mvcspirng/pom.xml
 
@@ -346,7 +346,7 @@ mybatis-config.xml 파일에서 <environments>태그의 역할은 mybatis가 연
 </beans:beans>
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%205.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/111975969-80ceb700-8b44-11eb-8dd8-3c0c201f85f3.png)
 
 <context:component-scan base-package="com.my.control" /> 설정해줘야 한다.
 
@@ -377,9 +377,9 @@ public class TestController {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%206.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/111975970-81674d80-8b44-11eb-8e26-234093e662ec.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%207.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/111975974-81674d80-8b44-11eb-8527-a980a5ddaf88.png)
 
 확장자가 무엇이 붙건 다 컨트롤러가 처리하고 있다. 자원에 대한 요청인 경우, 실제 컨트롤러가 요청인 된 경우를 구분해야 한다.  자원 요청 시에 컨트롤러 호출되면 안된다. 그 즉시 자원 내용을 응답을 해야 한다. 그에 대한 설정이 필요한데 resources이다.
 
@@ -408,17 +408,17 @@ public class TestController {
 .
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%208.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/111975976-81ffe400-8b44-11eb-9d9d-6867c6a2c20e.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%209.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/111975979-81ffe400-8b44-11eb-9ef8-da1b185b728b.png)
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2010.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/111975980-82987a80-8b44-11eb-8dbf-4af96e0089ca.png)
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2011.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/111975982-82987a80-8b44-11eb-9c1b-f213810ab6e9.png)
 
 jsp페이지는 WEB-INF에 view밑에 넣어주자
 
@@ -463,7 +463,7 @@ public class TestController {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2012.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/111975984-83311100-8b44-11eb-9d02-c9b9de950396.png)
 
 ---
 
@@ -494,17 +494,17 @@ public class TestController {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2013.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/111975986-83311100-8b44-11eb-8ecb-13d6dcb1be2c.png)
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2014.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/111975989-83c9a780-8b44-11eb-9871-971881e81635.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2015.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/111975992-83c9a780-8b44-11eb-8193-3853df8368f9.png)
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2016.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/111975994-84623e00-8b44-11eb-8734-8b301be68168.png)
 
 ---
 
@@ -523,15 +523,15 @@ public class TestController {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2017.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/111975997-84623e00-8b44-11eb-9654-b1193b3a9703.png)
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2018.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/111976001-84fad480-8b44-11eb-9804-d3e092575daa.png)
 
 먼저 mybatis용 config파일하고 mapper파일 설정 해주자!
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2019.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2019.png)
+![20](https://user-images.githubusercontent.com/63957819/111976003-84fad480-8b44-11eb-98c0-c097ea0d1bd8.png)
 
 boardbackspring 프로젝트에 있는 boardMapper, mybatis-config.xml 복사해서 mvcspring프로젝트 src/main/java 밑에 붙여 넣자!
 
@@ -586,7 +586,7 @@ WHERE id=#{id}
 </mapper>
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2020.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2020.png)
+![21](https://user-images.githubusercontent.com/63957819/111976004-85936b00-8b44-11eb-9275-920f6a362d87.png)
 
 주문자 정보에 대한 기본 값을 postal로 설정 해 놓고 postal에 해당하는 상세주소 addr1로 Customer가 구성되어 있다. Customer와 Person 자식 부모 관계이다. Customer가 has a 관계로 Postal를 참조하고 있다. id, pwd는 Person이 갖고 있다. 
 
@@ -596,9 +596,9 @@ Customer하고 Postal하고 join이 안되어있다. 그래서 join을 이용해
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2021.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2021.png)
+![22](https://user-images.githubusercontent.com/63957819/111976006-85936b00-8b44-11eb-8e1a-d5f3068f9435.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2022.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2022.png)
+![23](https://user-images.githubusercontent.com/63957819/111976009-862c0180-8b44-11eb-9344-38693a8c925f.png)
 
 hikari, mybatis, component-scan 부분이 있어야 한다.
 
@@ -653,7 +653,7 @@ pom.xml이용하면 라이브러리를 다운로드해서 쓰는 것
 </beans>
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2023.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2023.png)
+![24](https://user-images.githubusercontent.com/63957819/111976012-862c0180-8b44-11eb-909b-f98ed3d71088.png)
 
 - pom.xml
 
@@ -670,19 +670,19 @@ pom.xml이용하면 라이브러리를 다운로드해서 쓰는 것
 .
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2024.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2024.png)
+![25](https://user-images.githubusercontent.com/63957819/111976013-86c49800-8b44-11eb-889d-629fb7d8a8ff.png)
 
 SqlSessionFactory에서 session객체를 얻는다. session을 사용할 때 발생하는 예외는 DataAccessException이라는 예외로 반환이 된다. SQLException을 DataAcessException으로 가공을 해놨다. 상속관계로 RuntimeException으로 상속 받은 DataAccessException이므로 catch로 Exception을 잡지 않으면 SQL구문에서 문제가 났을 때 프로그래밍 그 자리에서 죽어버린다.
 
 dao패키지의 클래스들이 자동 스프링에 의해서 관리되도록 Component-scan해주자
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2025.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2025.png)
+![26](https://user-images.githubusercontent.com/63957819/111976016-86c49800-8b44-11eb-9448-dd6ea2e1aeb8.png)
 
 예를들어 #{id} 는 파라미터로 전달된 객체의 getId메서드가 자동 호출이 돼서 첫 번째 물음표에 전달이 되서 세팅이 된다. 파라미터 타입은 자바빈 형태여야 한다. 자바빈 형태란 매개 변수 없는 생성자, setter, getter이어야 한다. 
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2026.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2026.png)
+![27](https://user-images.githubusercontent.com/63957819/111976019-875d2e80-8b44-11eb-9128-b6c37b809567.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2027.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2027.png)
+![28](https://user-images.githubusercontent.com/63957819/111976020-875d2e80-8b44-11eb-846f-e980721d8af6.png)
 
 - root-context.xml
 
@@ -766,15 +766,15 @@ public class CustomerDAOOracle {
 }
 ```
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2028.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2028.png)
+![29](https://user-images.githubusercontent.com/63957819/111976022-87f5c500-8b44-11eb-80b8-1c1c4062b1a7.png)
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2029.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2029.png)
+![30](https://user-images.githubusercontent.com/63957819/111976024-87f5c500-8b44-11eb-812e-281a1f01a474.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2030.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2030.png)
+![31](https://user-images.githubusercontent.com/63957819/111976027-888e5b80-8b44-11eb-9ecb-3eb8aada2d73.png)
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2031.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2031.png)
+![32](https://user-images.githubusercontent.com/63957819/111976030-888e5b80-8b44-11eb-8772-8a13acc954f3.png)
 
 같은 아이디 insert할 경우 getCause() 메서드를 이용하여 warning예외를 얻어내기
 
@@ -842,11 +842,11 @@ public class CustomerDAOOracle {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2032.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2032.png)
+![33](https://user-images.githubusercontent.com/63957819/111976033-8926f200-8b44-11eb-9b18-e22dbc8e5722.png)
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2033.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2033.png)
+![34](https://user-images.githubusercontent.com/63957819/111976035-8926f200-8b44-11eb-9ee0-f8b6b27f82f9.png)
 
 - root-context.xml
 
@@ -917,7 +917,7 @@ private CustomerDAO dao = new CustomerDAOOracle(); → spring에 의해서 관�
 
 ---
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2034.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2034.png)
+![35](https://user-images.githubusercontent.com/63957819/111976037-89bf8880-8b44-11eb-83fd-0302630fe25f.png)
 
 - servlet-context.xml
 
@@ -982,6 +982,6 @@ public class CustomerController {
 
 실행결과>
 
-![day11%2087c0088853024c61b3ca34f7738df667/Untitled%2035.png](day11%2087c0088853024c61b3ca34f7738df667/Untitled%2035.png)
+![36](https://user-images.githubusercontent.com/63957819/111976038-89bf8880-8b44-11eb-8a5c-cd476059ba20.png)
 
 로그인 성공 후 semanticcssjq로 넘어가는 것을 확인할 수 있다.
