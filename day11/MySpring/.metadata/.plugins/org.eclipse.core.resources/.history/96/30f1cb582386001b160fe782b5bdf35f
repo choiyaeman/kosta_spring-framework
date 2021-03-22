@@ -1,0 +1,52 @@
+package control;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.my.exception.AddException;
+import com.my.exception.ModifyException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+public class BoardWriteCotroller implements Controller {
+	private static final long serialVersionUID = 1L;
+	private RepBoardService service = RepBoardService.getInstance();	
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//1.요청전달데이터 얻기
+		String board_title = request.getParameter("board_title");
+		String board_writer = request.getParameter("board_writer");
+		String board_pwd = request.getParameter("board_pwd");
+		
+		RepBoard board = new RepBoard();
+		board.setBoard_title(board_title);
+		board.setBoard_writer(board_writer);;
+		board.setBoard_pwd(board_pwd);
+		
+		//json응답을 위해 Jackson Lib활용
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> map = new HashMap<>();
+		try {
+			//2.비지니스로직 호출
+			service.writeBoard(board);			
+			map.put("status", 1);
+		} catch (AddException e) {
+			e.printStackTrace();
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}		
+		//3.응답하기
+		return mapper.writeValueAsString(map);
+	}
+
+}

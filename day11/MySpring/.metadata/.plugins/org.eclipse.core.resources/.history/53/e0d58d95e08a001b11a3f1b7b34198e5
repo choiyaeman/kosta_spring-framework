@@ -1,0 +1,42 @@
+package com.my.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.my.dao.CustomerDAO;
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.vo.Customer;
+
+@Service
+public class CustomerService {
+	@Autowired
+	private CustomerDAO dao; //CustomerDAO주입받기
+	/**
+	 * 고객 가입한다.
+	 * @param c
+	 * @throws AddException
+	 */
+	public void add(Customer c) throws AddException{
+		dao.insert(c);
+	}
+	/**
+	 * 아이디에 해당 고객을 검색한다.
+	 * @param id 아이디
+	 * @return
+	 * @throws FindException 고객이 없거나 문제가 발생한 경우 예외가 발생한다.
+	 */
+	public Customer findById(String id) throws FindException{
+		return dao.selectById(id);
+	}
+	
+	public Customer login(String id, String pwd) throws FindException{
+		Customer c = dao.selectById(id);
+		if(c.getPwd().equals(pwd)) {
+			return c;
+		}else {
+			throw new FindException("로그인 실패");
+		}
+	}
+	
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties>
+  	<property name="username" value="scott"/>
+  </properties>
+  <typeAliases>
+  	<typeAlias alias="RepBoard" type="com.my.vo.RepBoard"/>
+  </typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="tiger"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="boardMapper.xml"/>
+    
+  </mappers>
+</configuration>

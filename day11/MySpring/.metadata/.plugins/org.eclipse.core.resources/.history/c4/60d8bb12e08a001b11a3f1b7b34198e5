@@ -1,0 +1,27 @@
+package com.my.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.my.dao.CustomerDAO;
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.vo.Customer;
+
+@Service
+public class CustomerService {
+	@Autowired
+	private CustomerDAO dao; //CustomerDAO주입받기
+	/**
+	 * 고객 가입한다
+	 * @param c
+	 * @throws AddException
+	 */
+	public void add(Customer c) throws AddException{
+		dao.insert(c);
+	}
+	
+	public void findById(String id) throws FindException{
+		dao.selectById(id);
+	}
+}

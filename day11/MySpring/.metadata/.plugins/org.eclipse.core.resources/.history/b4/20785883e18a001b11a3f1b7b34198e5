@@ -1,0 +1,13 @@
+package com.my.control;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class CustomerController {
+	
+	@PostMapping("/login")
+	public void login(String id, String pwd) {
+		
+	}
+}
