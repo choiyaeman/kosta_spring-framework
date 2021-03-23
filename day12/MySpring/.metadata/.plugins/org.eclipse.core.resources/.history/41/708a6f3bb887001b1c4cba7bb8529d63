@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.RepBoardMapper">
+  <select id="selectByBoard_no" resultType="com.my.vo.RepBoard">
+    SELECT * FROM repboard WHERE board_no=#{aaa}
+  </select>
+  <select id="selectByBoard_titleORBoard_writer"
+          parameterType="java.lang.String"
+          resultType="com.my.vo.RepBoard">
+    SELECT * FROM repboard WHERE board_title LIKE #{word} OR board_writer LIKE #{word}
+  </select>
+  <!-- <insert id="insert"
+          parameterType="com.my.vo.RepBoard">
+  	INSERT INTO repboard(board_no, parent_no, board_title, board_writer, board_dt, BOARD_PWD, board_cnt)  
+  	VALUES(board_seq.NEXTVAL, #{parent_no}, #{board_title}, #{board_writer}, SYSDATE, #{board_pwd}, 0)    
+  </insert> -->
+  
+  <insert id="insert"
+          parameterType="java.util.Map">
+  	INSERT INTO repboard(board_no, parent_no, board_title, board_writer, board_dt, BOARD_PWD, board_cnt)  
+  	VALUES(board_seq.NEXTVAL, #{parent_no}, #{board_title}, #{board_writer}, SYSDATE, #{board_pwd}, 0)    
+  </insert>
+  
+  <update id="updateBoardCnt"
+          parameterType="java.lang.Integer">
+	UPDATE repboard SET board_cnt = board_cnt+1
+	WHERE board_no = #{board_no}
+  </update>
+  
+  <delete id="delete"
+          parameterType="java.util.HashMap">
+  	DELETE repboard where board_no = #{board_no} AND board_pwd = #{board_pwd}        
+  </delete>
+  
+</mapper>

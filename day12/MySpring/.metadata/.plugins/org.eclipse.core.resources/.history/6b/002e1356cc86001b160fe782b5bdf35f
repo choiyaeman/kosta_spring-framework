@@ -1,0 +1,76 @@
+package control;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.my.exception.FindException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class BoardController {
+	@Autowired
+	private RepBoardService service;
+	@GetMapping(value = "/list")
+	@ResponseBody
+	//public List<RepBoard> execute(HttpServletRequest request, HttpServletResponse response) 
+	public List<RepBoard> list(String word) throws Exception{
+		//String word = request.getParameter("word");
+		log.info("검색어:" + word);
+		List<RepBoard> list = null;
+		try {
+			if(word == null) {
+				list = service.findAll();
+			}else {
+				list = service.findByBoard_titleORBoard_writer(word);
+			}		
+		}catch (FindException e) {
+			log.info(e.getMessage());
+		}
+		return list;
+	}
+	
+	@RequestMapping("/detail")
+	@ResponseBody
+	public Map<String, Object> detail(@RequestParam(required = false, defaultValue = "0") int board_no) 
+			throws Exception{
+		
+		//1.요청전달데이터 얻기
+//		String strBoard_no = request.getParameter("board_no");
+//		int board_no = Integer.parseInt(strBoard_no);
+//		System.out.println(board_no);
+		
+		//json용 JACKSON Lib활용
+//		ObjectMapper mapper = new ObjectMapper();
+//		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		mapper.setDateFormat(df); //json문자열로 변환될때 날짜형식을 지정
+		
+		Map<String, Object> map = new HashMap<>();
+		try {
+			//2.비지니스로직 호출
+			RepBoard board = service.findByBoard_no(board_no);
+			
+			map.put("status", 1);
+			map.put("board", board);
+		} catch (FindException e) {
+			e.printStackTrace();
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		//응답
+		//out.print(mapper.writeValueAsString(map));
+		//return mapper.writeValueAsString(map);
+		return map;
+	} 
+}

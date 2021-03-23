@@ -1,0 +1,29 @@
+package com.my.control;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.my.exception.FindException;
+import com.my.service.CustomerService;
+import com.my.vo.Customer;
+
+@Controller
+public class CustomerController {
+	@Autowired
+	private CustomerService service;
+	
+	@PostMapping("/login")
+	public void login(String id, String pwd, HttpSession session) {
+		try {
+			Customer c = service.login(id, pwd);
+			session.setAttribute("loginInfo", id); //session에 고객 id정보를 loginInfo라는 attribute라고 추가. 매개변수로 받아오면 된다.
+			
+		} catch (FindException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

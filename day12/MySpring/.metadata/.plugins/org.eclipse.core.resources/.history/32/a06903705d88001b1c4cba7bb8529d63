@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="mybatis.OrderMapper">
+  	<resultMap id="orderMap" type="com.my.vo.OrderInfo" autoMapping="true">
+  		<id property="order_no" column="order_no"/>
+  		
+  		<!-- <result property="order_dt" column="order_dt"/> -->
+  		<association property="c" javaType="com.my.vo.Customer" autoMapping="true">
+  			<id property="id" column="order_id"/>
+  			<!-- <result property="pwd" column="pwd"/> -->
+  			
+  		</association>
+  		<collection property="lines" ofType="com.my.vo.OrderLine" autoMapping="true">
+  			<id property="order_no" column="order_no"/>
+  			<!-- <result property="order_quantity" column="order_quantity"/> -->
+  			<!-- <association property="p" javaType="com.my.vo.Product">
+  				<id property="prod_no" column="order_prod_no"/>
+  				<result property="prod_name" column="prod_name"/>
+  				<result property="prod_price" column="prod_price"/>
+  			</association> -->
+  			<result property="p.prod_no" column="order_prod_no"/>
+  			<result property="p.prod_name" column="prod_name"/>
+  			<result property="p.prod_price" column="prod_price"/>
+  		</collection>
+  	</resultMap>
+  	<select id="" resultMap="orderMap" parameterType="string">
+	SELECT info.order_no, info.order_dt,
+           line.order_prod_no, line.order_quantity,
+           p.prod_name, p.prod_price
+	FROM order_info info JOIN order_line line ON (info.order_no = line.order_no)
+                         JOIN product p ON (line.order_prod_no = p.prod_no)
+	WHERE info.order_id=#{order_id}
+  	</select>
+  </mapper>

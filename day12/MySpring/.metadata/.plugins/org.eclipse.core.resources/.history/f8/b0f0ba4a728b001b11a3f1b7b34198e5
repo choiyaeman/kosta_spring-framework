@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>searchpost.html</title>
+<style>
+html,body{margin:0px; overflow: hidden;height:100%;border:1px solid red;}
+div.post{ width: 100%; height:100%;}
+div.post>div.list{width: 100%; height:80%; border:2px double green; margin-top:10px;    ;overflow-y: auto;   }
+div.post>div.list>ul{list-style-type: none; padding: 0px;}
+div.post>div.list>ul>li>div.code{width:15%; display: inline-block;}
+div.post>div.list>ul>li>div.baseAddr{display: inline-block;}
+div.post>div.list>ul>li>div.buildingno{display: none;}
+
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(function(){
+	$("div.post>div.list>ul>li").click(function(e){
+		var codeValue = $(this).find('div.code').html();
+		var baseAddrValue = $(this).find('div.baseAddr').html();
+		var buildingnoValue = $(this).children('div.buildingno').html();
+		alert(codeValue + ":" + baseAddrValue + ":" + buildingnoValue);
+				
+		//메인창객체찾기
+		var mainWindow = window.opener;
+		mainWindow.document.querySelector("form>label>input[class=code]").value = codeValue;
+		mainWindow.document.querySelector("form>input[name='postal.buildingno']").value = buildingnoValue;
+		mainWindow.document.querySelector("form>input[class=baseAddr]").value = baseAddrValue;
+		
+		self.close(); //현재창닫기
+	});
+});
+</script>
+</head>
+<body>
+<div class="post">
+  <div class="search">
+    <span>도로명주소</span>
+    <input type="search" value="홍익길">
+  </div>
+  <div class="list">
+  <ul>
+    <li>
+	    <div class="code">30065</div>
+	    <div class="baseAddr">세종특별자치시 금종로</div>
+	    <div class="buildingno">3611010500109680000000001</div>
+    </li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 10</div><div class="buildingno">3611011200101720001000001</div></li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 12</div><div class="buildingno">3</div></li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 14</div><div class="buildingno">4</div></li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 14-1</div><div class="buildingno">5</div></li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 16</div><div class="buildingno">6</div></li>
+    <li><div class="code">30016</div><div class="baseAddr">세종특별자치시 조치원읍 홍익길 16-1</div><div class="buildingno">7</div></li>
+  </ul>
+  </div>
+</div>
+</body>
+</html>

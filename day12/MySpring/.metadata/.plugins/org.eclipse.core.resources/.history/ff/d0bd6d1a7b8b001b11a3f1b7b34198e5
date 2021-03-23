@@ -1,0 +1,60 @@
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.my.dao.ProductDAO;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.vo.Product;
+
+import lombok.extern.log4j.Log4j;
+
+//Spring용 단위테스트
+//@WebAppConfiguration //JUnit5인 경우 
+@RunWith(SpringJUnit4ClassRunner.class) //Juni4인 경우
+
+//Spring 컨테이너용 XML파일 설정
+@ContextConfiguration(locations={
+		"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@Log4j
+public class ProductDAOOracle {
+	@Autowired
+	private ProductDAO dao;
+	
+//	@Test
+	public void selectByNo() throws FindException {
+		String prod_no = "C0001";
+		String expName = "아메리카노";
+		
+		Product p = dao.selectByNo(prod_no);
+		assertNotNull(p);
+		assertEquals(expName, p.getProd_name());
+		
+	}	
+
+	@Test
+	public void selectAll() throws FindException {		
+		List<Product> list = dao.selectAll();
+		int expListSize = 0;
+		assertTrue(expListSize < list.size());
+	}
+	
+	@Test
+	public void selectByNoOrName() throws FindException, ModifyException {
+		String word = "아";
+		List<Product> list = dao.selectByNoOrName(word);
+		int expListSize = 4;
+		assertEquals(expListSize,list.size());
+	}
+}
