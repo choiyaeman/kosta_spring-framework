@@ -24,7 +24,7 @@
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112120129-5262e180-8c01-11eb-981e-d7e04613d9d3.png)
 
 ---
 
@@ -87,7 +87,7 @@ yaema      1234       최예만
 
 ---
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%201.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112120135-53940e80-8c01-11eb-9d5a-7c309f71afe2.png)
 
 vo와 dto의 공통점과 차이점?
 
@@ -266,7 +266,7 @@ public class ProductDAOOracle {
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%202.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112120138-53940e80-8c01-11eb-9b80-a9b424387229.png)
 
 ---
 
@@ -368,7 +368,7 @@ required = false → 전달이 안될 수도 있다는 것을 설정하자. 반�
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%203.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112120140-542ca500-8c01-11eb-80f2-9421f1e78d25.png)
 
 ---
 
@@ -402,7 +402,7 @@ public class ProductController {
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%204.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112120142-54c53b80-8c01-11eb-85f7-9fdf9427d40e.png)
 
 ---
 
@@ -459,7 +459,7 @@ public class ProductController {
 
 ---
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%205.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112120145-54c53b80-8c01-11eb-8198-9a6180fbfecb.png)
 
 장바구니에서는 dao, vo가 필요 없다. mybatis쪽 이 필요 없으므로 쉽게 처리 가능하다. 컨트롤러용 메서드만 만들어주면 된다. 클라이언트에게 응답하지 않도록 구성되어 있으므로 PutCartServlet에서도 결과를 응답하지 않는다. front쪽에서도 응답 받은 결과가 있다해도 아무런 일을 하지 않는다. 응답할 내용이 없다면 메서드의 리턴타입을 ResponseEntity타입으로 응답을 해주면 된다
 
@@ -504,13 +504,13 @@ public class CartController {
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%206.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112120150-555dd200-8c01-11eb-9028-c61e383e6df4.png)
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%207.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/112120152-555dd200-8c01-11eb-80b6-93a05581d2bc.png)
 
 ---
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%208.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/112120154-55f66880-8c01-11eb-9f2b-0c88b8a20b6c.png)
 
 문자열 형태로 자바스크립트가 json형태로 처리 해줄 거다. 
 
@@ -572,13 +572,13 @@ public class CartController {
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%209.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/112120155-568eff00-8c01-11eb-8ede-78f43a45de37.png)
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2010.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/112120157-568eff00-8c01-11eb-913c-82cd87be7bbd.png)
 
 ---
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2011.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/112120160-57279580-8c01-11eb-9579-8cbe3bb3bf84.png)
 
 장바구니 내용이 주문에 포함되어야 한다. db에 저장하는 작업이 필요 orderDAO 클래스 필요, OrderInfo, OrderLine테이블에 자료를 추가하는 작업이 수행되어야 한다. dao를 사용하는 쪽이기 때문에 mybatis를 사용해야 한다. 주문을 OrderInfo쪽에서 성공이 됐으나 OrderLine에 상세 정보를 추가하려는 데 문제가 발생하면 롤백 작업을 해야 한다. 두 테이블의 자료를 완벽히 처리가 완료가 되어야만 주문 작업이 성공됐다라고 보는 것이다. 한쪽이라도 어긋나서 저장이 안됐다면 원 상태로 다시 돌려야 한다. 주문 트랜잭션을 생각하면 된다.
 
@@ -767,7 +767,7 @@ SQL> select * from order_line;
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2012.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/112120164-57279580-8c01-11eb-8051-d2f601820b22.png)
 
 ---
 
@@ -802,7 +802,7 @@ SQL> select * from order_line;
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2013.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/112120166-57c02c00-8c01-11eb-9841-4535bab9ef58.png)
 
 ```bash
 SQL> select * from order_info;
@@ -824,7 +824,7 @@ ORDER_NO ORDER_PROD ORDER_QUANTITY
 
 ---
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2014.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/112120169-57c02c00-8c01-11eb-825f-2306680f5e5c.png)
 
 주문 기본 테이블의 작업이 롤백이 되지 않고 남아있다..트랜잭션 처리를 개발자가 맡기면 안된다. 트랜잭션 처리를 도와주는 방법으로 선언적 트랜잭션 처리를 하면 된다. 즉 스프링 컨테이너가 알아서 할 거다.  AOP개념을 이용해서 트랜잭션 관리를 해보자.
 
@@ -834,9 +834,9 @@ ORDER_NO ORDER_PROD ORDER_QUANTITY
 
 `PROPAGATION_REQUIRES_NEW` : 첫 번째 트랜잭션이 보류되면서, 두 번째 메소드가 새로운 트랜잭션에서 실행이 된다.
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2015.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/112120171-5858c280-8c01-11eb-9245-b40f9bd91d78.png)
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2016.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/112120175-5858c280-8c01-11eb-83c3-c1bd650c8461.png)
 
 - root-context.xml
 
@@ -1018,4 +1018,4 @@ public class OrderDAOOracle implements OrderDAO {
 
 실행결과>
 
-![day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2017.png](day12%20f688e9e11fc2479aa044b2a72036b66f/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/112120181-58f15900-8c01-11eb-8869-fa5fe4cf31c1.png)
