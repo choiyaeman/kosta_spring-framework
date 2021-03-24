@@ -123,11 +123,11 @@ public class OrderDAOOracle {
 }
 ```
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112256615-6c56ff80-8ca7-11eb-9448-8cb3ac3fee2e.png)
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%201.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112256617-6d882c80-8ca7-11eb-9c8a-df63bb3d00e0.png)
 
 ---
 
@@ -240,7 +240,7 @@ public class OrderController{
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%202.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112256620-6e20c300-8ca7-11eb-9a16-a1ac5d3c950f.png)
 
 날짜 형태로 포맷 되려면  vo에가서 JsonFormat 어노테이션을 설정하면 된다.
 
@@ -261,11 +261,11 @@ public class OrderInfo {
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%203.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112256621-6e20c300-8ca7-11eb-8e29-da5d9e327393.png)
 
 ---
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%204.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112256623-6eb95980-8ca7-11eb-9ba0-a0d642494b3d.png)
 
 비슷한 일을 매번 처리해야 한다는 불편한 일이 생긴다. 이 컨트롤러를 도와주는 어노테이션 도움을 받으면 된다. 컨트롤러의 앞 단 또는 뒷 단에 하고 싶은 일을 끼워 넣기를 할 수 있는데 이 개념 자체가 AOP가 되는 거다. 핵심 로직은 컨트롤러가 되는 거고 컨트롤러의 일 처리 전후의 공통 사항으로 컨트롤러어드바이스로 작성해서 원하는 위치에 끼워 넣기 하면 된다.
 
@@ -390,7 +390,7 @@ public class OrderControllerAdvice {
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%205.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112256625-6eb95980-8ca7-11eb-9e3d-81e3d73dbcb8.png)
 
 ---
 
@@ -480,7 +480,7 @@ alert('<%=e.getMessage()%>');
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%206.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112256626-6f51f000-8ca7-11eb-9077-92c672ca615b.png)
 
 ---
 
@@ -581,13 +581,13 @@ public class CustomerOrderControllerAdvice {
 
 ---
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%207.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/112256627-6f51f000-8ca7-11eb-901a-472204547e95.png)
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%208.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/112256628-6fea8680-8ca7-11eb-930e-e433525d697c.png)
 
 파일업로드 url을 ./html/upload.html으로 바꾸자~
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%209.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/112256630-6fea8680-8ca7-11eb-9a49-15b5d57ed8f2.png)
 
 servlet-api가 2점대 버전인 경우 파일 업로드 지원을 잘 안 해준다 그래서 3점대 버전으로 해준다.
 
@@ -677,21 +677,21 @@ public class UploadController {
 }
 ```
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2010.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/112256631-70831d00-8ca7-11eb-930a-fbbdc2bbfbca.png)
 
 a.png파일 내용이 네트워크를 통과해서 Controllr까지 전송이 되고 input태그의 name값과 MutipartFile의 파라미터하고 같아야 한다. MutilpartFile은 파일이 아니라 스트림이다. 파일 내용이 한 바이트씩 서버에 전송이 된 거고 그 전송된 내용 스트림이 MultipartFile인 거다.
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2011.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/112256632-70831d00-8ca7-11eb-8e6c-7336d965b8cc.png)
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2012.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/112256633-711bb380-8ca7-11eb-90eb-a372545c1d9a.png)
 
 ---
 
 OrderDAOOracle.java-test 단위테스트 시 오류가 난다..
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2013.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/112256634-711bb380-8ca7-11eb-9835-c459822079d0.png)
 
 톰캣이 켜져 있으면 ServletContext자동 생성해서 문제가 안되는데 만약 톰캣이 안 켜져있는 상태에서 ServletContext를 못쓴다.
 
@@ -705,7 +705,7 @@ OrderDAOOracle.java-test 단위테스트 시 오류가 난다..
 
 단위테스트를 위한 객체이다. MockServletContext객체가 스프링 컨테이너에 의해 관리가 되어야 톰캣 실행 안 해도 단위 테스트를 할 수 있다.
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2014.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/112256635-71b44a00-8ca7-11eb-8e0d-ce37e251931a.png)
 
 이런 문제를 모두 해결하려면 servlet-api 버전을 3.1버전 이상으로 올리면 된다.
 
@@ -735,4 +735,4 @@ OrderDAOOracle.java-test 단위테스트 시 오류가 난다..
 
 실행결과>
 
-![day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2015.png](day13%202fc9f29872be4adfbb8752c85304596d/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/112256636-71b44a00-8ca7-11eb-8a3d-d0932ae3ec84.png)
