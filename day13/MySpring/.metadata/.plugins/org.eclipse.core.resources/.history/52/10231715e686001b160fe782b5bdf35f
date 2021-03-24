@@ -1,0 +1,57 @@
+package control;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.exception.FindException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class BoardDetailController {
+	
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	private RepBoardService service;	
+	public ModelAndView detail(int board_no) {
+//		String path ="/WEB-INF/views/error.jsp";
+//		//1.요청전달데이터 얻기
+//		String strBoard_no = request.getParameter("board_no");
+//		int board_no = Integer.parseInt(strBoard_no);
+		log.info("아이디:" + board_no);
+		
+		ModelAndView mnv = new ModelAndView();
+		try {
+			//2.비지니스로직 호출
+			RepBoard board = service.findByBoard_no(board_no);
+			//3.요청속성으로 추가
+//			request.setAttribute("board", board);
+			mnv.addObject("board", board);
+//			path = "/WEB-INF/views/detail.jsp";
+			mnv.setViewName("detail");
+		} catch (FindException e) {
+			//request.setAttribute("exception", e);
+			mnv.addObject("exception", e);
+			mnv.setViewName("error");
+			e.printStackTrace();
+		}
+		//4.View로 이동
+//		RequestDispatcher rd = request.getRequestDispatcher(path);
+//		rd.forward(request, response);
+		return mnv;
+	}
+
+}

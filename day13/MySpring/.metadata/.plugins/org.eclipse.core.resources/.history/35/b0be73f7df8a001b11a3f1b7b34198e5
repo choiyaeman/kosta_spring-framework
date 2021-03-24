@@ -1,0 +1,12 @@
+package com.my.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.my.dao.CustomerDAO;
+
+@Service
+public class CustomerService {
+	@Autowired
+	private CustomerDAO dao; //CustomerDAO주입받기
+}

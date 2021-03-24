@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties>
+  	<property name="username" value="scott"/>
+  </properties>
+  <typeAliases>
+  	<typeAlias alias="RepBoard" type="com.my.vo.RepBoard"/>
+  </typeAliases>
+  <mappers>
+    <mapper resource="boardMapper.xml"/>
+    <mapper resource="customerMapper.xml"/>
+  </mappers>
+</configuration>

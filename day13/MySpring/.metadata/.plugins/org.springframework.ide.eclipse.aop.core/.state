@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="di"/>
+<aop-project name="boardmvcspring"/>
+<aop-project name="boardbackspring"/>
+<aop-project name="mvcspring">
+<aspect-definition advice-class-name="org.springframework.transaction.interceptor.TransactionInterceptor" advice-method-name="invoke" advice-method-parameter-types="org.aopalliance.intercept.MethodInvocation" advice-type="AROUND" aspect-end-line-number="42" aspect-name="org.springframework.transaction.interceptor.TransactionInterceptor#mvcspring#src/main/webapp/WEB-INF/spring/root-context.xml#42" aspect-start-line-number="42" factory-id="org.springframework.ide.eclipse.aop.core.javaAdvisorDefinitionElementFactory" file="/mvcspring/src/main/webapp/WEB-INF/spring/root-context.xml" pointcut-expression="(@within(org.springframework.transaction.annotation.Transactional) || @annotation(org.springframework.transaction.annotation.Transactional)) &amp;&amp; execution(* *..*(..))" proxy-target-class="false">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:mvcspring|3:src/main/webapp/WEB-INF/spring/root-context.xml|7:beans:8|8:orderDAOOracle:8" bean-file="/mvcspring/src/main/webapp/WEB-INF/spring/root-context.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/mvcspring/src/main/webapp/WEB-INF/spring/root-context.xml" source="=mvcspring/C:\/Users\/User\/.m2\/repository\/org\/springframework\/spring-tx\/5.2.6.RELEASE\/spring-tx-5.2.6.RELEASE.jar=/maven.pomderived=/true=/=/org.eclipse.jst.component.dependency=/\/WEB-INF\/lib=/=/maven.pomderived=/true=/=/org.eclipse.jst.component.archivename=/spring-tx-5.2.6.RELEASE.jar=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-tx=/=/maven.version=/5.2.6.RELEASE=/=/maven.scope=/compile=/&lt;org.springframework.transaction.interceptor(TransactionInterceptor.class[TransactionInterceptor~invoke~Lorg.aopalliance.intercept.MethodInvocation;" source-start-line="-1" target="=mvcspring/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.my.dao{OrderDAOOracle.java[OrderDAOOracle~insert~QOrderInfo;" target-start-line="22"/>
+</aspect-definition>
+</aop-project>
+</aop-reference-model>

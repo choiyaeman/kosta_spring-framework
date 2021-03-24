@@ -1,0 +1,17 @@
+package com.my.advice;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.my.control.OrderController;
+
+@ControllerAdvice(assignableTypes = com.my.control.OrderController.class)
+public class OrderControllerAdvice {
+	
+	@ExceptionHandler
+	@ResponseBody
+	public Object except() {
+		
+	}
+}

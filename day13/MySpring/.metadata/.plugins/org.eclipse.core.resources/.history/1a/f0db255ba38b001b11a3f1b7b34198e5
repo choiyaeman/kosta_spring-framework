@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.OrderMapper">
+	<insert id="insertInfo" parameterType="OrderInfo">
+INSERT INTO order_info(order_no, order_id, order_dt)
+VALUES (order_seq.NEXTVAL, #{c.id},  SYSDATE)
+	</insert>
+	
+	<insert id="insertLine" parameterType="OrderLine">
+INSERT INTO order_line(order_no, order_prod_no, order_quantity)
+VALUES ( order_seq.CURRVAL,  ?,  ?)
+	</insert>
+</mapper>
