@@ -1,6 +1,6 @@
 # day14
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112458533-3ea1b180-8da0-11eb-8232-9f5877c0af26.png)
 
 상세주소를 입력하지 않는 case
 
@@ -19,7 +19,7 @@ a9         1234       c
 
 실행결과>
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%201.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112458537-3fd2de80-8da0-11eb-85c6-4b3479240189.png)
 
 - mybatis-config.xml
 
@@ -39,15 +39,15 @@ a9         1234       c
 
  
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%202.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112458540-406b7500-8da0-11eb-982a-e6b899de1e4b.png)
 
 String → view이름을 결정에서 return 하겠다 의미. attribute는 model로 관리가 된다. 그러므로 model로 가지고 오면 된다.
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%203.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112458543-406b7500-8da0-11eb-95a3-49e2171d54a5.png)
 
 바인딩 된 c에는 아이디, 이름, 비밀번호도 있고 c값을 model에 어트리뷰트에 추가해야 jsp이동 된 view단에서 내용을 확인할 수 있다. 다시 한번 활용해야 한다면 model어트리뷰트를 사용해야 한다. 사용하지 않고 파라미터 c를 쓰면 jsp단에서 가입 내용을 보고 싶으면 아이디를 꺼내오려면 요청 전달 데이터가 있기는 한데 c를 받아오는 게 아니라 id값으로 받아와야 한다. 바인딩 된 Customer라는 파라미터 객체 자체를 이동 된 jsp에서 사용하기 위해서는 결국 model의 attribute로 추가 해줘야 한다.
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%204.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112458546-41040b80-8da0-11eb-83df-612228057fd7.png)
 
 비지니스 하고 일을 하는 Controller, 사용자들하고 일을 하는 영역 viewer 두 개로 나뉜다.
 
@@ -55,7 +55,7 @@ String → view이름을 결정에서 return 하겠다 의미. attribute는 mode
 
 실습>
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%205.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112458550-41040b80-8da0-11eb-8a0b-db99b05ae4d8.png)
 
 - BoardController.java
 
@@ -147,7 +147,7 @@ public class BoardController {
 }
 ```
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%206.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112458554-419ca200-8da0-11eb-85ed-3912176d1730.png)
 
 - variables.jsp
 
@@ -417,8 +417,8 @@ $(function(){
 
 참고>
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%207.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/112458556-419ca200-8da0-11eb-96ad-d75ae372f92b.png)
 
 ---
 
-![day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%208.png](day14%204e0d14f4de5a47058182ab013ca8ced0/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/112458559-42353880-8da0-11eb-9064-a808502ac62f.png)
