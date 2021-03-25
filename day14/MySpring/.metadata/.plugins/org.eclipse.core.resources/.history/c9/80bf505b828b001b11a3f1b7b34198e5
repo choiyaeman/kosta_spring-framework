@@ -1,0 +1,37 @@
+package com.my.control;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.exception.FindException;
+import com.my.service.ProductService;
+import com.my.vo.Product;
+
+@Controller
+public class ProductController {
+	@Autowired
+	private ProductService service;
+	
+	@RequestMapping("/product/list")
+	public ModelAndView list(@RequestParam(name = "prod")String word) { //요청전달데이터 prod를 word라는 변수로 받아오겠다는 의미
+		//String word = request.getParameter("prod");
+		ModelAndView mnv = new ModelAndView();
+		try {
+			if(word == null) { //전체검색	
+				List<Product> list = service.findAll();
+				mnv.addObject("list", list);
+			}else { //검색어에 해당하는 상품들만 검색
+				List<Product> list = service.findByNoOrName(word);
+				mnv.addObject("list", list);
+			}
+		} catch (FindException e) {
+			mnv.addObject("e", e);
+			e.printStackTrace();
+		}	
+	}
+}

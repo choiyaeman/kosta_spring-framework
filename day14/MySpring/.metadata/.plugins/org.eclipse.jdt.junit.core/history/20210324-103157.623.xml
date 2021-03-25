@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OrderDAOOracle" project="mvcspring" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="OrderDAOOracle" time="0.229">
+    <testcase name="selectById" classname="OrderDAOOracle" time="0.229"/>
+  </testsuite>
+</testrun>

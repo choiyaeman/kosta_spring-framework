@@ -1,0 +1,25 @@
+package com.my.advice;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.my.control.OrderController;
+
+@ControllerAdvice(assignableTypes = {com.my.control.OrderController.class,
+		                             com.my.control.CustomerController.class})
+public class CustomerOrderControllerAdvice {
+	@ExceptionHandler
+	@ResponseBody
+	public Object except(Exception e) {
+		Map<String, Object> map = new HashMap<>();
+		e.printStackTrace();
+		map.put("status", -1);
+		map.put("msg", e.getMessage());
+		return map;
+	}
+}

@@ -1,0 +1,17 @@
+package com.my.advice;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@ControllerAdvice(assignableTypes = com.my.control.BoardController.class)
+public class BoardControllerAdvice {
+	@ExceptionHandler
+	@ResponseBody
+	public Object except(Exception e, Model model) {
+		model.addAttribute("exception", e);
+		return "error";
+	}
+
+}
