@@ -1,0 +1,250 @@
+package com.my.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
+import com.my.sql.MyConnection;
+//import com.my.sql.MyConnection;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+
+@Repository
+@Qualifier(value = "oracle")
+@Log4j
+public class RepBoardDAOOracle implements RepBoardDAO {
+//	@Autowired
+//	@Qualifier("hikarids")
+	
+//	@Autowired
+//	private DataSource ds;
+
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
+	
+	public void delete(int board_no, String board_pwd) throws RemoveException{
+		SqlSession session = null;
+		try {
+			//SqlSession session = sqlSessionFactory.openSession();
+			session = sqlSessionFactory.openSession();
+			Map <String, Object> map = new HashMap<>();
+			map.put("board_no", board_no);
+			map.put("board_pwd", board_pwd);
+			int rowcnt = session.delete("mybatis.RepBoardMapper.delete", map);
+			if(rowcnt == 0) {
+				throw new RemoveException("글번호가 없거나 비밀번호가 다릅니다");
+			}
+			session.commit();
+		} catch(Exception e) {
+			throw new RemoveException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	public void update(RepBoard board, String board_pwd) throws ModifyException{
+		if(board.getBoard_title() == null && board.getBoard_pwd() == null) {
+			throw new ModifyException("수정할 내용이 없습니다");
+		}
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			Map<String, Object> map = new HashMap<>();
+			map.put("board", board);
+			map.put("board_pwd", board_pwd);
+			int rowcnt = session.update("mybatis.RepBoardMapper.update", map);
+			if(rowcnt == 0) {
+				throw new ModifyException("게시글이 없습니다");
+			}
+			session.commit();
+		} catch(Exception e) {
+			throw new ModifyException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	
+	public void updateBoardCnt(int board_no) throws ModifyException{
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			int rowcnt = session.update("mybatis.RepBoardMapper.updateBoardCnt", board_no);
+			if(rowcnt == 0) {
+				throw new ModifyException("게시글이 없습니다");
+			}
+			session.commit();
+		} catch(Exception e) {
+			throw new ModifyException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	public RepBoard selectByBoard_no(int board_no) throws FindException{
+		//SqlSessionFactory 에서 SqlSession 만들기
+		//Query결과가 1개의 행인 경우에는 selectOne메서드를 호출한다
+		//0개행이 검색된 경우는 null을 반환한다
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			RepBoard b = session.selectOne("mybatis.RepBoardMapper.selectByBoard_no", board_no);
+			if(b == null) {
+				throw new FindException("게시글이 없습니다");
+			}
+			return b;
+		} catch(Exception e) {
+			throw new FindException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	
+	public List<RepBoard> selectByBoard_titleORBoard_writer(String word) throws FindException{
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			HashMap<String, String> map = new HashMap<>();
+			map.put("word", word);
+			map.put("o", "board_no DESC");
+		
+			List<RepBoard> list = session.selectList(
+					"mybatis.RepBoardMapper.selectByBoard_titleORBoard_writer"
+					, map);
+			if(list.size() == 0) {
+				throw new FindException("게시글이 없습니다");
+			}
+			return list;
+		} catch(Exception e) {
+			throw new FindException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	public List<RepBoard> selectAll() throws FindException{
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			List<RepBoard> list = session.selectList("mybatis.RepBoardMapper.selectAll");
+			if(list.size() == 0) {
+				throw new FindException("게시글이 없습니다");
+			}
+			return list;
+		} catch(Exception e) {
+			throw new FindException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+	public void insert(RepBoard board) throws AddException{
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			session.insert("mybatis.RepBoardMapper.insert", board);
+			session.commit();//???
+		} catch(Exception e) {
+			throw new AddException(e.getMessage());
+		} finally {
+			if(session !=null ) session.close();
+		}
+	}
+//	public static void main(String[] args) {
+//		RepBoardDAOOracle dao = new RepBoardDAOOracle();
+//		String board_title = "테스트1";
+//		String board_writer = "작성자1";
+//		String board_pwd = "p1";
+//		RepBoard board = new RepBoard(board_title, board_writer, board_pwd);
+//		
+//		try {
+//			dao.insert(board);
+//		} catch (AddException e) {
+//			e.printStackTrace();
+//		}
+		
+//		int parent_no = 6;
+//		String board_title = "테스트1-답1";
+//		String board_writer = "작성자2";
+//		String board_pwd = "p2";
+//		RepBoard board = new RepBoard(parent_no, board_title, board_writer, board_pwd);
+//		
+//		try {
+//			dao.insert(board);
+//		} catch (AddException e) {
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			System.out.println(dao.selectAll());
+//		} catch (FindException e) {
+//			e.printStackTrace();
+//		}
+		
+//		int board_no = 6;
+//		try {
+//			System.out.println(dao.selectByBoard_no(board_no));
+//		} catch (FindException e) {
+//			e.printStackTrace();
+//		}
+		
+//		String word = "2";
+//		try {
+//			System.out.println(dao.selectByBoard_titleORBoard_writer(word));
+//		} catch (FindException e) {
+//			e.printStackTrace();
+//		}
+	
+//		int board_no = 6;
+//		try {
+//			dao.updateBoardCnt(board_no);
+//		} catch (ModifyException e) {
+//			e.printStackTrace();
+//		}
+		
+//		int board_no = 6;
+//		String board_pwd = "upp1";
+//		RepBoard board = new RepBoard();
+//		board.setBoard_no(board_no);
+//		board.setBoard_pwd(board_pwd);
+//		try {
+//			dao.update(board, "p1");
+//		} catch (ModifyException e) {
+//			e.printStackTrace();
+//		}
+		
+//		int board_no = 6;
+//		String board_title = "up제목1";
+//		String board_pwd = "upp2";
+//		RepBoard board = new RepBoard();
+//		board.setBoard_no(board_no);
+//		board.setBoard_title(board_title);
+//		board.setBoard_pwd(board_pwd);
+//		try {
+//			dao.update(board, "upp1");
+//		} catch (ModifyException e) {
+//			e.printStackTrace();
+//		}
+		
+
+		
+//		int board_no = 7;
+//		String board_pwd = "p2";
+//		try {
+//			dao.delete(board_no, board_pwd);
+//		} catch (RemoveException e) {
+//			e.printStackTrace();
+//		}
+//	}
+}

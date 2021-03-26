@@ -1,0 +1,154 @@
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.my.dao.CustomerDAO;
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
+import com.my.vo.Customer;
+import com.my.vo.Postal;
+
+import lombok.extern.log4j.Log4j;
+
+//Spring용 단위테스트
+//@WebAppConfiguration //JUnit5인 경우 
+@RunWith(SpringJUnit4ClassRunner.class) //Juni4인 경우
+
+//Spring 컨테이너용 XML파일 설정
+@ContextConfiguration(locations={
+		"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@Log4j
+public class CustomerDAOOracle {
+	@Autowired
+	private CustomerDAO dao;
+	
+	@Test
+	public void selectById() throws FindException {
+		String id = "sid1";
+		String expPwd = "spwd1";
+		String expName = "네임1"; 
+		String expCity = "세종특별자치시";
+		String expDoro = "마음안1로";
+		String expBuilding = "가락마을17단지";
+		String expAddr1 = "1동1호";
+		
+		Customer  c = dao.selectById(id);
+		assertNotNull(c);
+		assertEquals(expPwd, c.getPwd());	
+		assertEquals(expName, c.getName());
+		assertEquals(expCity, c.getPostal().getCity().trim());
+		assertEquals(expDoro, c.getPostal().getDoro().trim());
+		assertEquals(expBuilding, c.getPostal().getBuilding().trim());
+		assertEquals(expAddr1, c.getAddr1());
+		
+	}	
+
+//	@Test
+	public void selectAll() throws FindException {		
+		List<Customer> list = dao.selectAll();
+		int expListSize = 0;
+		assertTrue(expListSize < list.size());
+	}
+	
+//	@Test
+	public void update() throws FindException, ModifyException {
+		String id = "sid1";
+		
+		Customer c = dao.selectById(id);
+		log.error(c);
+		String expPwd = c.getPwd();
+		String expName = c.getName();
+		String expBuildingno = c.getPostal().getBuildingno();
+		String expAddr1 = c.getAddr1();
+		
+		//---비번 변경---
+		expPwd = "upwd";
+		c.setPwd(expPwd);
+		Customer c1 = dao.update(c);
+		assertEquals(expPwd, c1.getPwd());
+		assertEquals(expName, c1.getName());
+		assertEquals(expBuildingno, c1.getPostal().getBuildingno());
+		assertEquals(expAddr1, c1.getAddr1());
+		
+		//---비번, 이름 변경---
+		expPwd = "upwd";
+		expName = "uname";
+		
+		c.setPwd(expPwd);
+		c.setName(expName);
+		c1 = dao.update(c);
+		assertEquals(expPwd, c1.getPwd());
+		assertEquals(expName, c1.getName());
+		assertEquals(expBuildingno, c1.getPostal().getBuildingno());
+		assertEquals(expAddr1, c1.getAddr1());
+		
+		//---비번, 이름, 도로명 건물번호 변경---
+		expPwd = "upwd";
+		expName = "uname";
+		expBuildingno = "3611010500109680000000001";
+		c.setPwd(expPwd);
+		c.setName(expName);
+		Postal expPostal = new Postal();
+		expPostal.setBuildingno(expBuildingno);
+		c.setPostal(expPostal);		
+		c1 = dao.update(c);
+		
+		assertEquals(expPwd, c1.getPwd());
+		assertEquals(expName, c1.getName());
+		assertEquals(expBuildingno, c1.getPostal().getBuildingno());
+		assertEquals(expAddr1, c1.getAddr1());
+		
+		//---비번, 이름, 도로명 건물번호, 상세주소 모두 변경---
+		expPwd = "upwd";
+		expName = "uname";
+		expBuildingno = "3611010500109680000000001";
+		expAddr1 = "uaddr1";
+		c.setPwd(expPwd);
+		c.setName(expName);
+		expPostal = new Postal();
+		expPostal.setBuildingno(expBuildingno);
+		c.setPostal(expPostal);
+		c.setAddr1(expAddr1);
+		c1 = dao.update(c);
+		
+		assertEquals(expPwd, c1.getPwd());
+		assertEquals(expName, c1.getName());
+		assertEquals(expBuildingno, c1.getPostal().getBuildingno());
+		assertEquals(expAddr1, c1.getAddr1());
+
+	}
+	
+
+	
+//	@Test
+	public void delete() throws FindException, RemoveException {
+		String id = "sid1";
+		Customer c = dao.delete(id);
+	}
+	
+//	@Test
+	public void insert() throws AddException {
+		String id = "sid1";
+		String expPwd = "spwd1";
+		String expName = "네임1";
+		String expBuildingno = "3611011200201000000000006";
+		Postal expPostal = new Postal();
+		expPostal.setBuildingno(expBuildingno);
+		String expAddr1 = "1동1호";
+		Customer c = new Customer(id, expPwd, expName, expPostal, expAddr1);
+		dao.insert(c);
+	}
+}

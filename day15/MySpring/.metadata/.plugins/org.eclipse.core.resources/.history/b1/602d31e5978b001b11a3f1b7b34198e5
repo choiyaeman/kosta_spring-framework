@@ -1,0 +1,44 @@
+package com.my.control;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class CartController {
+	@RequestMapping("/putcart")
+	public void put(String prod_no, int quantity, HttpSession session) {
+		//cart라는 이름의 속성값 얻기
+				Map<String, Integer> cart = (Map)session.getAttribute("cart");
+				
+				//cart가 없으면
+				if(cart == null) {
+					cart = new HashMap<>();
+					session.setAttribute("cart", cart);
+				}
+				
+				//cart에서 상품번호에 해당하는 수량을 얻기
+				Integer quantity2 = cart.get(prod_no);
+				if(quantity2 != null) { //cart에 상품번호가 있는경우 
+					quantity += quantity2; //수량을 증가
+				}
+				log.info("장바구니에 넣기할 상품번호:" + prod_no +", 수량:"+ intQuantity);
+				//cart에 상품번호, 수량추가
+				cart.put(prod_no, quantity);
+				
+				//장바구니확인 테스트코드
+				System.out.println("장바구니 넣기 확인");
+				Set<String> keys = cart.keySet();//키들
+				for(String key: keys) {
+					System.out.println(key + ":" + cart.get(key));
+				}
+
+	}
+}

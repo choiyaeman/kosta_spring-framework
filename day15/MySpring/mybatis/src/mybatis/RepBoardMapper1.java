@@ -1,0 +1,8 @@
+package mybatis;
+
+import org.apache.ibatis.annotations.Select;
+
+public interface RepBoardMapper1 { //xml대신해서 만들어진 interface
+	@Select("SELECT * FROM repboard WHERE board_no=#{board_no}")
+	public com.my.vo.RepBoard selectByBoard_no(int board_no);
+}

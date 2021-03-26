@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.ProductMapper">
+  <!-- 상품번호로 검색 -->
+  <select id="selectByNo" parameterType="string" resultType="Product">
+  SELECT * FROM product WHERE prod_no=#{prod_no}
+  </select>
+  
+  <!-- 상품번호나 이름으로 검색 -->
+  <select id="selectByNoOrName" parameterType="string" resultType="Product">
+  SELECT * FROM product WHERE prod_no LIKE '%${value}%' OR
+                              prod_name LIKE '%${value}%'
+  ORDER BY prod_name ASC
+  </select>
+  
+  <!-- 상품전체 검색 -->
+  <select id="selectAll" resultType="Product">
+  SELECT * FROM product
+  ORDER BY prod_name ASC
+  </select>
+</mapper>
