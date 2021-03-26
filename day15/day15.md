@@ -99,7 +99,7 @@ WHERE r BETWEEN  FUN_START_ROW(#{currentPage}, #{cnt_per_page})
 
 실행결과>
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112599420-41111380-8e53-11eb-8712-4c5fce58a15c.png)
 
 ---
 
@@ -176,7 +176,7 @@ public ModelAndView list(String word,
 
 실행결과>
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%201.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112599425-42424080-8e53-11eb-889f-ed4c19da06b1.png)
 
 ---
 
@@ -202,7 +202,7 @@ view에서 쓰일 Model을 추가 시켜줘야 한다. 총 페이지 수도 추�
 
 실행결과>
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%202.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112599430-42424080-8e53-11eb-9f21-5f65b42e0b07.png)
 
 ---
 
@@ -254,9 +254,9 @@ ex) 최대 페이지 5일 경우
 
 실행결과>
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%203.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112599431-42dad700-8e53-11eb-8e30-c3c4d10ea859.png)
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%204.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112599433-42dad700-8e53-11eb-997b-e53f49e0e3c8.png)
 
 ---
 
@@ -308,7 +308,7 @@ location.href="/mvcspring/board/list?currentPage="+ classValue; //상대경로
 
 실행결과>
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%205.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112599435-43736d80-8e53-11eb-8619-f3e48d7dc4b4.png)
 
 ---
 
@@ -484,7 +484,7 @@ $("ul>li>span").click(function(event){
 
 ---
 
-![day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%206.png](day15%20b1089f2ecf504565a6c4cbf0cf24ba43/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112599437-43736d80-8e53-11eb-960e-a6420aac1b96.png)
 
 모바일 애플리케이션에서도 백엔드를 요청해서 결과를 앱으로 가져갈 수 있다.
 
