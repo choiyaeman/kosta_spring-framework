@@ -1,0 +1,140 @@
+package control;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
+import com.my.service.RepBoardService;
+import com.my.vo.RepBoard;
+
+import lombok.extern.log4j.Log4j;
+@CrossOrigin("*")
+//@Controller
+//@RestController("/board/*")
+@RestController
+@Log4j
+public class BoardController {
+	@Autowired
+	private RepBoardService service;
+	
+	@PostMapping("/board/write")
+	public ResponseEntity<String> write(@RequestBody RepBoard board) {
+		try {
+//			//2.비지니스로직 호출
+			service.writeBoard(board);	
+			ResponseEntity<String> entity = 
+					new ResponseEntity(HttpStatus.OK);
+			return entity;
+		}catch(AddException e) {
+			ResponseEntity<String> entity = 
+					new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+			return entity;
+		}
+	}
+	
+	@RequestMapping("/board/reply")
+	public Map<String, Object> reply(@RequestBody RepBoard board) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		try {
+			service.writeReply(board);
+			map.put("status", 1);
+		} catch (AddException e) {
+			e.printStackTrace();
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+	
+	@DeleteMapping("/board/{board_no}/{certify_board_pwd}")
+	public Map<String, Object> remove(@PathVariable int board_no, @PathVariable String certify_board_pwd) throws Exception {		
+		Map<String, Object> map = new HashMap<>();
+		try {
+			service.remove(board_no, certify_board_pwd);
+			map.put("status", 1);
+		} catch (RemoveException e) {
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+	@PutMapping("/board/{board_no}/{certify_board_pwd}")
+	public Map<String, Object> modify(
+			@RequestBody RepBoard board,
+			@PathVariable int board_no,
+			@PathVariable String certify_board_pwd) {
+		Map<String, Object> map = new HashMap<>();
+		try {
+			service.modify(board, certify_board_pwd);
+			map.put("status", 1);
+		} catch (ModifyException e) {
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}	
+	
+	@GetMapping(value={"/board/list", "/board/list/{word}"})
+	@ResponseBody
+	public Map<String, Object> list(@PathVariable(name = "word")  Optional<String>optWord)	throws Exception{
+		String word= null;
+	    if (optWord.isPresent()) {
+	    	word = optWord.get();   
+	    }
+		log.info("검색어:" + word);
+		List<RepBoard> list = null;
+		Map<String, Object>map = new HashMap<>();
+		try {
+			if(word == null) {
+				list = service.findAll();
+			}else {
+				list = service.findByBoard_titleORBoard_writer(word);
+			}
+			map.put("list", list);
+			map.put("status", 1);
+		}catch (FindException e) {
+			log.info(e.getMessage());
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+	
+	@GetMapping("/board/{board_no}")
+	public Map<String, Object> detail(@PathVariable int board_no) 
+			throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		try {
+			//2.비지니스로직 호출
+			RepBoard board = service.findByBoard_no(board_no);
+		
+			map.put("status", 1);
+			map.put("board", board);
+		} catch (FindException e) {
+			e.printStackTrace();
+			map.put("status", -1);
+			map.put("msg", e.getMessage());
+		}
+		return map;
+	}
+}

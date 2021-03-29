@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인(index.html)</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+//let backContextPath = "/boardback";
+//let backContextPath = "/springmvc";
+//let backContextPath = "/boardbackspring";
+let backContextPath = "/boardbackrestspring";
+let boardPath = "/board";
+//let frontContextPath = "/boardfrontController";
+//let frontContextPath = "/boardfrontspring";
+let frontContextPath = "/boardfrontrestspring";
+//form을 json으로 변환해주는 함수 :  	사용법- $("#form").serializeObject()
+jQuery.fn.serializeObject = function() {
+    var obj = null;
+    try {
+        if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+            var arr = this.serializeArray();
+            if (arr) {
+                obj = {};
+                jQuery.each(arr, function() {
+                    obj[this.name] = this.value;
+                });
+            }//if ( arr ) {
+        }
+    } catch (e) {
+        alert(e.message);
+    } finally {
+}
+ 
+    return obj;
+};
+$(function(){	
+	
+	//var backContextPath = "/boardbackController";
+	$("header").load(frontContextPath + '/header.html');
+	$("footer").load(frontContextPath + '/footer.html');
+	
+	//--메뉴 클릭 시작--
+	$("header").on("click","ul>li>a",function(event){
+		var menu = $(event.target).attr("class");
+		//alert("메뉴:" + $(event.target).attr("class"));
+		var $sectionObj = $("section");
+		switch(menu){
+		case 'list'://게시판
+			$sectionObj.load(frontContextPath + "/list.html");
+			break;
+		case 'write'://글쓰기
+			$sectionObj.load(frontContextPath + "/write.html");
+			break;
+		}
+		return false;
+	});
+	//--메뉴 클릭 끝--
+
+});
+</script>
+</head>
+<body>
+<header>
+</header>
+
+<section>
+<h1>답변형 게시판 MVC실습</h1>
+</section>
+
+<footer>
+</footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+package com.my.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
+import com.my.vo.Product;
+@Repository
+public class ProductDAOOracle implements ProductDAO {
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
+	@Override
+	public Product selectByNo(String prod_no) throws FindException {
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			Product p = session.selectOne("mybatis.ProductMapper.selectByNo", prod_no);
+			if(p == null) {
+				throw new FindException("상품이 없습니다.");
+			}
+			return p;
+		}catch(Exception e) {
+			throw new FindException(e.getMessage());
+		}finally {
+			if(session != null) session.close();
+		}
+	}
+
+	@Override
+	public List<Product> selectByNoOrName(String word) throws FindException {
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			List<Product> list = session.selectList("mybatis.ProductMapper.selectByNoOrName", word);
+			
+			if(list.size() == 0) {
+				throw new FindException("상품이 없습니다.");
+			}
+			return list;
+		}catch(Exception e) {
+			throw new FindException(e.getMessage());
+		}finally {
+			if(session != null) session.close();
+		}
+	}
+	
+	@Override
+	public List<Product> selectAll() throws FindException {
+		SqlSession session = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			List<Product> list = session.selectList("mybatis.ProductMapper.selectAll");
+			if(list.size() == 0) {
+				throw new FindException("상품이 없습니다");
+			}
+			return list;
+		}catch(Exception e){
+			throw new FindException(e.getMessage());
+		}finally {
+			if(session != null) session.close();
+		}
+	}
+
+	@Override
+	public void insert(Product product) throws AddException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Product update(Product product) throws ModifyException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product delete(String prod_no) throws RemoveException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

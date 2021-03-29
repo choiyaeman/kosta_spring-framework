@@ -1,0 +1,53 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ -->
+<script>
+$(function(){
+	var $writeFormObj = $("section>div.write>form");
+	$writeFormObj.submit(function(){
+		var formSerializeArray = $writeFormObj.serializeArray();
+		var object = {};
+		for (var i = 0; i < formSerializeArray.length; i++){
+		    object[formSerializeArray[i]['name']] = formSerializeArray[i]['value'];
+		}		 
+		var data = JSON.stringify(object);
+		
+		$.ajax({
+			"method": "POST",
+		    "transformRequest": [
+		      null
+		    ],
+		    "transformResponse": [
+		      null
+		    ],
+		    "jsonpCallbackParam": "callback",
+		    "url": backContextPath  + boardPath + $writeFormObj.attr("action"),
+		    "headers": {
+		      "Accept": "application/json, text/plain, */*",
+		      "Content-Type": "application/json;charset=utf-8"
+		    },
+		    "data": data,
+			success:function(responseObj){//응답성공이란 응답완료(readyState가 4), 응답코드가 200인 경우를 말함
+				alert("성공");
+				$("header>ul>li>a.list").trigger("click");
+			},
+			error:function(jqXHR){//응답실패
+				alert("에러:" + jqXHR.status);
+			}
+		});
+		return false;
+	});
+});
+</script>
+<style>
+*{
+  box-sizing: border-box;
+}
+</style>
+<div class="write">
+<form method="post" action="/write">
+      글제목: <input type="text" name="board_title"><br>
+      작성자 : <input type="text" name="board_writer"><br>
+      비밀번호:<input type="password" name="board_pwd" required><br>
+   <input type="submit" value="글쓰기"> 
+</form>
+</div>

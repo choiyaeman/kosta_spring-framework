@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>./html/rest.html</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(function(){	
+	$("form>input[type=button]").click(function(){
+		//form객체의 입력 내용을 문자열로 변환[{...}, {...}, {...}]
+		console.log($("form").serialize());
+		
+		//form객체의 입력 내용을 배열로 변환
+		//0: {name: "tno", value: "1"}
+		//1: {name: "owner", value: "owner1"}
+		//2: {name: "grade", value: "1등급"}
+		console.log($("form").serializeArray());
+		
+		var formSerializeArray = $("form").serializeArray();
+		var jsonObj = {}; //json용 일반객체
+		for(var i=0; i<formSerializeArray.length; i++){
+			var obj = formSerializeArray[i];
+			jsonObj[obj.name] = obj.value;
+		}
+		console.log(jsonObj);
+		//JSON.parse(); 문자열을 JSON객체로 변환
+		var data = JSON.stringify(jsonObj); //일반객체를 JSON객체용 문자열로 변환
+		console.log(data);
+		$.ajax({
+				  "method": "DELETE",
+				  "transformRequest": [
+				    null
+				  ],
+				  "transformResponse": [
+				    null
+				  ],
+				  "jsonpCallbackParam": "callback",
+				  "url": "http://localhost:8888/resttest/remove/1",
+				  "headers": {
+				    "Accept": "application/json, text/plain, */*"
+				  },
+				  "data": "",
+				  "timeout": {}
+		});
+		
+//		$.ajax(
+//			{
+//				  "method": "PUT",
+//				  "transformRequest": [
+//				    null
+//				  ],
+//				  "transformResponse": [
+//				    null
+//				  ],
+//				  "jsonpCallbackParam": "callback",
+//				  "url": "/resttest/modify/1/최예만",
+//				  "headers": {
+//				    "Accept": "application/json, text/plain, */*",
+//				    "Content-Type": "application/json;charset=utf-8"
+//				  },
+//				  "data": data,
+//				  "timeout": {}
+//				}
+//		);
+		
+		// $.ajax({
+		//     url : '/resttest/write'
+		//     method : 'POST',
+	    //     data : data,
+			
+		//   "transformRequest": [
+		//     null
+		//    ],
+		//   "transformResponse": [
+		//     null
+		//    ],
+		//    "jsonpCallbackParam": "callback",
+
+		//    "headers": {
+		//      "Accept": "application/json, text/plain, */*",
+		//      "Content-Type": "application/json;charset=utf-8"
+		//    },
+		});
+	});
+});
+
+</script>
+</head>
+<body>
+	<form>
+		티켓번호: <input type="text" name="tno" value="1"><br> 소유주: <input
+			type="text" name="owner" value="owner1"><br> 등급: <input
+			type="text" name="grade" value="1등급"><br> <input
+			type="button" value="전송">
+	</form>
+</body>
+</html>
