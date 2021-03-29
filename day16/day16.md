@@ -20,7 +20,7 @@ RESTful하고 REST하고 같은 용어이다.
 
 ---
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled.png](day16%208be749f5e469497c891c978e8f679060/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112873871-2bbf1200-90fd-11eb-8324-2eaeca8d3187.png)
 
 요청 url에서 bags라는 값이 b, 1234라는 값이 pid에 대입. 
 
@@ -30,7 +30,7 @@ RequestBody어노테이션으로 요청 시에 전달되는 데이터를 json형
 
  
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%201.png](day16%208be749f5e469497c891c978e8f679060/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112873875-2cf03f00-90fd-11eb-9c37-59abbdc9678e.png)
 
 검색, 삭제할 때는 요청 데이터가 필요 없으나 데이터 추가, 수정 할 때에는 요청 데이터를 전송해야 한다.
 
@@ -63,11 +63,11 @@ RequestBody어노테이션으로 요청 시에 전달되는 데이터를 json형
 .
 ```
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%202.png](day16%208be749f5e469497c891c978e8f679060/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112873876-2cf03f00-90fd-11eb-9dc6-4680a512a7c9.png)
 
 pom.xml오른쪽 클릭> Maven> Update Project...
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%203.png](day16%208be749f5e469497c891c978e8f679060/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112873877-2d88d580-90fd-11eb-9002-365de6b1c4b6.png)
 
 Window> Preference> Workspace, Web → UTF-8로 지정
 
@@ -123,7 +123,7 @@ $(function(){
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%204.png](day16%208be749f5e469497c891c978e8f679060/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112873878-2d88d580-90fd-11eb-900d-8b640bdeb35e.png)
 
 ---
 
@@ -182,11 +182,11 @@ $(function(){
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%205.png](day16%208be749f5e469497c891c978e8f679060/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112873882-2e216c00-90fd-11eb-8a8c-925f6f72298f.png)
 
 ---
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%206.png](day16%208be749f5e469497c891c978e8f679060/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112873883-2e216c00-90fd-11eb-9924-d2e9da2da0a6.png)
 
 구글 웹스토어> rest client 검색>Yet Anoter REST Client설치
 
@@ -208,9 +208,9 @@ public class HomeController {
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%207.png](day16%208be749f5e469497c891c978e8f679060/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/112873884-2eba0280-90fd-11eb-9657-395466bf5ef5.png)
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%208.png](day16%208be749f5e469497c891c978e8f679060/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/112873886-2eba0280-90fd-11eb-9a24-9eb4f02f58de.png)
 
 Request Details 소스코드 복사해서 rest.html ajax안에 붙여넣기
 
@@ -277,7 +277,7 @@ public class HomeController {
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%209.png](day16%208be749f5e469497c891c978e8f679060/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/112873887-2f529900-90fd-11eb-9b09-76f5190c18c1.png)
 
 ---
 
@@ -296,7 +296,7 @@ public class HomeController {
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2010.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/112873890-2f529900-90fd-11eb-84c0-235aff238f04.png)
 
 - rest.html
 
@@ -337,7 +337,7 @@ $.ajax(
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2011.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/112873891-2feb2f80-90fd-11eb-8ce9-16e1258869be.png)
 
 - rest.html
 
@@ -362,7 +362,7 @@ $.ajax({
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2012.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/112873892-2feb2f80-90fd-11eb-9778-51b90d0b8776.png)
 
 ---
 
@@ -392,11 +392,11 @@ $.ajax({
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2013.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/112873894-3083c600-90fd-11eb-8cda-242a6d4c96da.png)
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2014.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/112873897-3083c600-90fd-11eb-912d-e6b15ca8ed83.png)
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2015.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/112873902-311c5c80-90fd-11eb-9daa-6673ccf2ab0c.png)
 
 - rest.html
 
@@ -420,15 +420,15 @@ $.ajax({
 
 실행결과>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2016.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/112873903-311c5c80-90fd-11eb-99e4-d03d65187638.png)
 
 ---
 
 실습>
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2017.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/112873905-31b4f300-90fd-11eb-9d6f-b2d97b177209.png)
 
-![day16%208be749f5e469497c891c978e8f679060/Untitled%2018.png](day16%208be749f5e469497c891c978e8f679060/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/112873907-31b4f300-90fd-11eb-8569-d9cd5974d542.png)
 
 먼저 back의 controll부터 만들고 완성이 되면 확장 프로그램 이용해서 테스트 해보고 front쪽 바꾸는 거다.
 
