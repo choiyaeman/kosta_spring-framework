@@ -2,7 +2,7 @@
 
 스프링은 크게 di, aop, springmvc 모듈 등등 내재 되어 있어서 필요한 모듈을 갖다 쓰면 된다. di 모듈은 무엇이고 aop 모듈이 무엇인지 알아야 한다.
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/112958908-e0991380-917d-11eb-9ea4-d9afef75921d.png)
 
 핵심로직의 윗 부분에 미리 처리해줘야 할 작업이 있다. 그 작업을 before, 이후에 처리해줘야 할 작업을 after라고 하자. 핵심로직 전단에서 수행할 작업과 핵심 로직 후에 처리해 할 로직들이 이곳 저곳에서 쓰인다. 공통로직과 비지니스 로직을 엮는 절차를 Weaving이라 부른다. AOP(AspectOrientedProgramming)는 공통로직이 여러 핵심 로직에 수평적으로 들어간다. 이외 반해 OOP같은 경우 공통로직을 부모 쪽에 들어간다. 이 구조는 수직 구조를 바라보는 관점이다.
 
@@ -14,7 +14,7 @@
 
 `advice` 의 종류로는 before, after, around 놈들이 있다. 이 advice는 어느 PointCut에 공통 사항을 weaving할 것인가 이다. 즉 weaving 방법이다.
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%201.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/112958913-e1ca4080-917d-11eb-8b27-4a6a2d94596e.png)
 
 advice를 이용해서 PointCut에 공통로직을 Weaving한다라고 보면 되는데 weaving하는 시점에 대해 알아볼 필요가 있다. 
 
@@ -26,19 +26,19 @@ Target객체용클래스 내용이 변하는 게 아니라 weaving된 공통 내
 
 ---
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%202.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/112958915-e262d700-917d-11eb-8579-b80852d718aa.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%203.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/112958919-e2fb6d80-917d-11eb-84ad-e8d9d4923047.png)
 
 maven repository> Spring Context다운 받으면 aop라이브러리를 같이 다운 받을 수 있다.
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%204.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/112958921-e2fb6d80-917d-11eb-9e73-64f3ddbff650.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%205.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/112958924-e3940400-917d-11eb-8f1e-4ba5aacb620f.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%206.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/112958928-e3940400-917d-11eb-9f37-82c0d567ec52.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%207.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/112958932-e42c9a80-917d-11eb-8ae3-48fd72a32caa.png)
 
 - pom.xml
 
@@ -141,7 +141,7 @@ public class Test {
 
 실행결과>
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%208.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/112958933-e42c9a80-917d-11eb-9a16-0ad9a2566a1b.png)
 
 ---
 
@@ -199,9 +199,9 @@ public class Test {
 
 실행결과>
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%209.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/112958934-e4c53100-917d-11eb-87a9-9d635745f4a2.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2010.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/112958937-e55dc780-917d-11eb-8d80-cf681b63c7a5.png)
 
 ---
 
@@ -217,7 +217,7 @@ public class Test {
 
 - 인증과 권한 부여
 
-    ![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2011.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/112958939-e55dc780-917d-11eb-9aab-31133dcee856.png)
 
 A사람은 b회사의 안쪽에 있는 db를 고치려고 온 사람이다. DBA라고 가정하자. A라는 사람이 회사에 오면 인증 절차를 거쳐야 한다. 신분증을 제시, 허가서 승인을 받아서 확인이 되면 허가를 받아 안으로 들어온다. 그리고 데이터 센터에 접근 할 수 있는 아이디 카드 발급을 받는데 그것은 권한 담당자가 권한을 부여 해준다. 허가증을 받았기 때문에 데이터 센터에 들어갈 수 있다. 근데 인가 받은 부분이 데이터 센터에만 들어갈 수  있는 거지 인사 팀에 접속할 수 있는 인가를 받은 게 아니다.
 
@@ -305,21 +305,21 @@ maven repository> spring security검색> core, web, config, taglib 4개 복붙
 
 실행결과>
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2012.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/112958943-e5f65e00-917d-11eb-8a82-dbb9e13d527d.png)
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2013.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/112958948-e5f65e00-917d-11eb-80ad-c3bc4a7a77b9.png)
 
 spring security에서 제공되는 로그인 페이지
 
 ---
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2014.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/112958953-e68ef480-917d-11eb-96bf-c95df91a6511.png)
 
 두 번째 방법을 많이 쓴다. 같은 웹 프로젝트에 있어야 자원을 공유할 수 있다.
 
 프로젝트를 완벽히 분리를 한다면 일반 고객용에서 문제가 발생될 error.jsp랑 관리자용에서 문제가 발생될 error.jsp가 있어야 한다. 같이 공유해서 쓰지 못하므로 똑같은 내용이 양쪽에 있어야 하므로 프로젝트 내용이 늘어난다.
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2015.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/112958955-e68ef480-917d-11eb-9f53-93333c59c0e9.png)
 
 앞 단에 신분증 제시해주세요 라고 하는 인증 절차가 필요하다. memeber, admin은 인증 절차를 거치고, all은 인증 절차를 거치지 않는다. 즉 memeber, admin로 요청이 들어왔다 하면 인증이 일단 통과가 되어야 한다.
 
@@ -354,10 +354,10 @@ spring security에서 제공되는 로그인 페이지
 
 실행결과>
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2016.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/112958957-e7278b00-917d-11eb-8c2f-b33c4848e453.png)
 
  access값이 permitAll이 아닌 경우 리다이렉트 돼서 login페이지로 이동.
 
-![day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2017.png](day17%2025e4d4484ecd4e009bdcdcbc06d7b9c9/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/112958958-e7278b00-917d-11eb-9505-64e4bab0494a.png)
 
 로그인 성공 돼서 인증이 성공 된 case이다. 실패가 된 경우에는 다시 로그인 페이지가 보인다.
