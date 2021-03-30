@@ -1,0 +1,23 @@
+package com.my.control;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.service.ProductService;
+
+@Controller
+public class ProductController {
+	@Autowired
+	private ProductService service;
+	
+	@RequestMapping("/product/list")
+	public ModelAndView list(@RequestParam(name = "prod")String word) { //요청전달데이터 prod를 word라는 변수로 받아오겠다는 의미
+		//String word = request.getParameter("prod");
+		if(word == null) {
+			
+		}
+	}
+}

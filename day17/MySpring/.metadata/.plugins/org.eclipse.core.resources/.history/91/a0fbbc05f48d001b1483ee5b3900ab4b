@@ -1,0 +1,15 @@
+package com.my.vo;
+
+import java.util.List;
+
+public class PageGroupBean {
+	private int cnt_per_page = 10; //페이지별 보여줄 목록수
+	private int cnt_per_page_group; //페이지 그룹에 보여줄 페이지수
+	private int totalCnt;
+	private int startPage;
+	private int endPage;
+	private int currentPage;
+	private int totalPage;
+	private String targetURL;
+	private List<T> list;
+}

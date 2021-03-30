@@ -1,0 +1,23 @@
+package com.my.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class Target { //핵심로직을 담고 있는 클래스
+	public void a() { //JoinPoint
+		System.out.println("a()메서드호출됨");
+	}
+	public void a(int num) { //JoinPoint
+		System.out.println("a(num)메서드호출됨");
+	}
+	public int b(int num) { //JoinPoint
+		System.out.println("b()메서드호출됨");
+		return num*10;
+	}
+	public void c() { //JoinPoint
+		System.out.println("c()메서드호출됨");
+	}
+	public void d() { //JoinPoint
+		System.out.println("d()메서드호출됨");
+	}
+}

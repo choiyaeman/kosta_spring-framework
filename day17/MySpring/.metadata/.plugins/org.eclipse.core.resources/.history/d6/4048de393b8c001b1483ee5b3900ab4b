@@ -1,0 +1,86 @@
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.my.dao.OrderDAO;
+import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.vo.Customer;
+import com.my.vo.OrderInfo;
+import com.my.vo.OrderLine;
+import com.my.vo.Product;
+
+import lombok.extern.log4j.Log4j;
+
+//Spring용 단위테스트
+//@WebAppConfiguration //JUnit5인 경우 
+@RunWith(SpringJUnit4ClassRunner.class) //Juni4인 경우
+
+//Spring 컨테이너용 XML파일 설정
+@ContextConfiguration(locations={
+		"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@Log4j
+public class OrderDAOOracle {
+	@Autowired
+	private OrderDAO dao;
+	
+	@Test
+	public void selectById() throws FindException {
+		String id = "id1";
+		List<OrderInfo>  list = dao.selectById(id);
+//		assertTrue(list.size() == 1);
+		OrderInfo info = list.get(list.size()-1);
+		List<OrderLine> lines = info.getLines();
+		
+		int expSize = 3;
+		assertTrue(lines.size() == expSize);
+		
+		int index = 0;
+		for(int i=index; i<expSize; i++) {
+			OrderLine line = lines.get(index);
+			Product p = line.getP();
+			String expProd_no = "C000" + (index+1);
+			//String expProd_name = "나이트로 바닐라 크림";
+			int expQuantity = index+1;
+			assertEquals(expProd_no, p.getProd_no());
+			//assertEquals(expProd_name, p.getProd_name());
+			assertEquals(expQuantity, line.getOrder_quantity());
+		}
+	}
+
+//	@Test
+	public void insert() throws AddException {
+		String id = "id1";
+		OrderInfo info = new OrderInfo();
+		Customer c = new Customer(); 
+		c.setId(id);
+		info.setC(c);
+		
+		List<OrderLine> lines = new ArrayList<>();
+		info.setLines(lines);
+		for(int i=1; i<=3; i++) {
+			Product p = new Product();
+			p.setProd_no("C000"+i);
+			int order_quantity = i;
+			//int order_quantity = i*100; //SQL구문오류 발생..최대 두자리를 넘어선 세자리로 지정했기 때문
+			OrderLine line = new OrderLine();
+			line.setP(p);
+			line.setOrder_quantity(order_quantity);
+			lines.add(line);
+		}
+		info.setLines(lines);
+	
+		dao.insert(info);
+	}
+}

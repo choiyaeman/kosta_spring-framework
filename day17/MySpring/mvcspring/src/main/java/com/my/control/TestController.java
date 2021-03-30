@@ -1,0 +1,24 @@
+package com.my.control;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class TestController {
+	
+//	@RequestMapping("/login")
+//	@ResponseBody
+//	public String login() {
+//		log.info("로그인 요청됨");
+//		return "login test";
+//	}
+	
+	@RequestMapping("/semanticcssjq")
+	public void semanticcssjq() {
+		
+	}
+}

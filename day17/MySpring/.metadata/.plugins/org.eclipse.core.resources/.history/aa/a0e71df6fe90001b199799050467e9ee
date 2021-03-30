@@ -1,0 +1,16 @@
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.my.service.Target;
+
+public class Test {
+
+	public static void main(String[] args) {
+		ClassPathXmlApplicationContext ctx;
+		String configLocation = "config.xml";
+		ctx = new ClassPathXmlApplicationContext(configLocation);
+		Target t = ctx.getBean("target", com.my.service.Target.class);
+		t.d();
+		//t.a();
+	}
+
+}
