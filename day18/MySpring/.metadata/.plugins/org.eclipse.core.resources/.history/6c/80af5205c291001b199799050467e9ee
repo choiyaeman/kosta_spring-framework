@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<security:http>
+		<security:intercept-url pattern="/sample/all" access="permitAll" />
+		<!-- ROLE_MEMBER권한을 가진 사용자만 /sample/memeber에 접속할 수 있다 -->
+		<security:intercept-url
+			pattern="/sample/member" access="hasRole('ROLE_MEMBER')" />
+		<!-- ROLE_ADMIN권한을 가진 사용자만 /sample/admin에 접속할 수 있다 -->
+		<security:intercept-url
+			pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" />
+			
+		<!-- 인증성공되면 요청한 url로 redirect됨-->
+		<security:form-login/>
+		
+		<!-- 권한없이 url요청한 경우 
+		ex)ROLE_MEMBER권한으로 /sample/admin요청한 경우 403응답오류발생 -->
+		<security:access-denied-handler/>
+	</security:http>
+	
+	<security:authentication-manager> <!-- 인증 관리 -->
+	<security:authentication-provider> 
+		<security:user-service> <!-- 사용자별 정보와 권한정보를 처리 --> 
+			<security:user name="member" password="{noop}member" 
+			authorities="ROLE_MEMBER"/> <!-- 권한부여 -->
+			
+			<security:user name="admin" password="{noop}admin" 
+			authorities="ROLE_ADMIN, ROLE_MEMBER"/> <!-- 권한부여 -->
+		</security:user-service>
+	</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

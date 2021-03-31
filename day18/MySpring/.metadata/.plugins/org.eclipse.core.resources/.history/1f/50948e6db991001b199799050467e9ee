@@ -1,0 +1,20 @@
+package controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller("/sample/*") //servlet-context.xml에 context:component-scan 설정필요!
+public class SampleController {
+	
+	@GetMapping("/all")
+	public void all() { //view이름이 /sample/all과 같음, view는 /WEB-INF/views/sample/all/all.jsp가 됨	
+	}
+	
+	@GetMapping("/member")
+	public void member() { //view이름이 /sample/member과 같음, view는 /WEB-INF/views/sample/member/member.jsp가 됨	
+	}
+	
+	@GetMapping("/admin")
+	public void admin() { //view이름이 /sample/admin과 같음, view는 /WEB-INF/views/sample/admin/admin.jsp가 됨	
+	}
+}

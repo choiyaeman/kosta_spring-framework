@@ -1,0 +1,13 @@
+package com.my.vo;
+
+public class PageGroupBean {
+	private int cnt_per_page;
+	private int cnt_per_page_group;
+	private int totalCnt;
+	private int startPage;
+	private int endPage;
+	private int currentPage;
+	private int totalPage;
+	private String targetURL;
+	private List<T> list;
+}

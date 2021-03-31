@@ -1,0 +1,25 @@
+package aop;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Component
+@Aspect
+public class MyAdvice {
+	@Before("execution(* a(..))")
+	public void before() {
+		System.out.println("공통사항 before()호출됨");
+	}
+	
+	@Around("execution(* b())")
+	public void around(ProceedingJoinPoint pjp) throws Throwable { //pointcut에 등록된 핵심 메서드
+		System.out.println("공통사항 around()시작됨");
+		String joinPointMethodName = 
+				pjp.getSignature().getName();
+		System.out.println("join point 메서드명:" + joinPointMethodName);
+		pjp.proceed();
+	}
+}

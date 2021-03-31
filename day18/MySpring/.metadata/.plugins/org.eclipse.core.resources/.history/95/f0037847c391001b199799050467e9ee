@@ -1,0 +1,13 @@
+package controller;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class CommonController {
+	@RequestMapping("/accessError")
+	public void accessError(Authentication auth) {
+		String userName = auth.getName();//인증된 유저 이름 확인
+	}
+}

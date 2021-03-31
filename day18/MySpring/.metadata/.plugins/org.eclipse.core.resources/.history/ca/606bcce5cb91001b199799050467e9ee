@@ -1,0 +1,23 @@
+package controller;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class CommonController {
+	@RequestMapping("/accessError")
+	public void accessError(Authentication auth, Model model) {
+		String userName = auth.getName();//인증된 유저 이름 확인
+		model.addAttribute("msg", userName+"은 접근불가한 사이트입니다.");
+	}
+	
+	@GetMapping("/myLogin")
+	public void getMyLogin() {}
+	@PostMapping("/myLogin")
+	public void postMyLogin() {}
+
+}
