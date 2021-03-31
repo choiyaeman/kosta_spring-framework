@@ -1,8 +1,8 @@
 # day18
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/113131898-be27f880-9258-11eb-9ac7-284a557c7563.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%201.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/113131904-bf592580-9258-11eb-9b58-f12a8a5eb101.png)
 
 - SampleController.java
 
@@ -83,17 +83,17 @@ public class SampleController {
 
 실행결과>
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%202.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/113131906-bff1bc00-9258-11eb-864c-b2b393df65e3.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%203.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/113131907-bff1bc00-9258-11eb-93be-768c75bb950c.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%204.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/113131908-c08a5280-9258-11eb-9e4a-a3afd155b17c.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%205.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/113131910-c08a5280-9258-11eb-9684-62897ee68903.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%206.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/113131911-c122e900-9258-11eb-827c-a1f4c94d17d3.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%207.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/113131913-c122e900-9258-11eb-9df7-24af560afda4.png)
 
 ---
 
@@ -151,7 +151,7 @@ sec:authentication property="principal.username" :
 </html>
 ```
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%208.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/113131914-c1bb7f80-9258-11eb-8756-a09f69da47a1.png)
 
 Forbidden 에러를 해결하려면 에러 설정을 해주면 되는데
 
@@ -159,11 +159,11 @@ security tag lib등록 해주고 sec 태그 사용해서 로그인 시에 사용
 
 실행결과>
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%209.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/113131918-c1bb7f80-9258-11eb-9d0b-63f316ae877c.png)
 
 ---
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2010.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/113131920-c2541600-9258-11eb-922b-ed09d03d6e94.png)
 
 - myLogin.jsp
 
@@ -228,9 +228,9 @@ public class CommonController {
 
 실행결과>
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2011.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/113131922-c2541600-9258-11eb-87ff-52c47edd7986.png)
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2012.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/113131924-c2ecac80-9258-11eb-8c96-5d2feb3dfd48.png)
 
 /sample/member 요청 시 자동 myLogin 페이지로 리다이렉트 된다
 
@@ -251,15 +251,15 @@ public class CommonController {
 
 실행결과>
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2013.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/113131926-c2ecac80-9258-11eb-8be1-6e8b8cc87afa.png)
 
 ---
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2014.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/113131929-c3854300-9258-11eb-99ba-672fb325b45c.png)
 
 실행결과>
 
-![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2015.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/113131930-c3854300-9258-11eb-94ff-9be977603419.png)
 
 invalidate-session="true" ⇒ 로그아웃 시에 세션 제거 처리
 
@@ -329,6 +329,6 @@ invalidate-session="true" ⇒ 로그아웃 시에 세션 제거 처리
 
     실행결과>
 
-    ![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2016.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/113131932-c41dd980-9258-11eb-9a2c-0004410f4a30.png)
 
-    ![day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2017.png](day18%208f7fbd81d37343158381b0e4645e44c7/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/113131934-c41dd980-9258-11eb-8025-6188324138f6.png)
