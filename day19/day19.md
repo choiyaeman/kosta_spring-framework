@@ -37,7 +37,7 @@
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled.png)
+![1](https://user-images.githubusercontent.com/63957819/113275910-3e626280-931a-11eb-84cb-06886a29e2ce.png)
 
 ---
 
@@ -64,25 +64,25 @@
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%201.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%201.png)
+![2](https://user-images.githubusercontent.com/63957819/113275914-3f938f80-931a-11eb-9176-7fb2655256f9.png)
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%202.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%202.png)
+![3](https://user-images.githubusercontent.com/63957819/113275915-3f938f80-931a-11eb-99b0-664b11cce91f.png)
 
 ---
 
 ## <Handler설정>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%203.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%203.png)
+![4](https://user-images.githubusercontent.com/63957819/113275916-402c2600-931a-11eb-9669-359af2b9163d.png)
 
 post방식의 url이 요청이 된다. 이전에 요청된 페이지가 무엇인지 확인해 보고 인증 성공 시 1.인증 설정에 맞는 권한을 부여해주고 2. 원래 요청된 경로로 이동을 한다. 스프링의 내장되어있는post방식의 로그인이다. 핸들러 작성해서 다른 곳으로 이동할 수 있게 바꾸자~
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%204.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%204.png)
+![5](https://user-images.githubusercontent.com/63957819/113275920-40c4bc80-931a-11eb-9124-879496b5b811.png)
 
 내장되어있는 헨들러를 통해서 원래의 url로 리다이렉트 했던 구문을 사용자 정의 핸들러를 만들어서 이런 작업을 할 수 있도록 해보자. 로그인 처리 후에 뭔가 하고 싶은 일이 있다 하면 컨트롤러를 쓰는게 아니라 인증이 성공 된 후의 헨들러를 작성해야 한다.
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%205.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%205.png)
+![6](https://user-images.githubusercontent.com/63957819/113275921-40c4bc80-931a-11eb-8f47-cda958dde7b2.png)
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%206.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%206.png)
+![7](https://user-images.githubusercontent.com/63957819/113275923-415d5300-931a-11eb-9597-6c860afa9746.png)
 
 - MyLoginSuccessHandler.java
 
@@ -125,7 +125,7 @@ public class MyLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%207.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%207.png)
+![8](https://user-images.githubusercontent.com/63957819/113275925-415d5300-931a-11eb-8668-cc049992be51.png)
 
 핸들러가 가로채기를 해서 userName이 admin이라고 하면 /sample/admin 으로 리다이렉트 된다. member로 로그인하면 /sample/member로 가도록 설계 한 거다.
 
@@ -133,11 +133,11 @@ security에서는 filter하고 intercept개념으로 controller를 제어하는 
 
 ---
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%208.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%208.png)
+![9](https://user-images.githubusercontent.com/63957819/113275929-41f5e980-931a-11eb-9649-5d72774e7d2b.png)
 
 실패가 되면 로그인 페이지를 다시 redirect 하러 간다. 그 일 처리를 기본 내장되어 있는 헨들러가 해주는 거다. 이 일을 이렇게 진행 안하고 새로운 실패 용 헨들러를 만들어서 다른 일을 하게 만들어 줄 거다. 실패 이유를 적어서 전달 해보자~
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%209.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%209.png)
+![10](https://user-images.githubusercontent.com/63957819/113275930-41f5e980-931a-11eb-8858-ccabaadc6204.png)
 
 - MyLoginFailerController.java
 
@@ -189,7 +189,7 @@ public class MyLoginFailerHandler implements AuthenticationFailureHandler {
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2010.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2010.png)
+![11](https://user-images.githubusercontent.com/63957819/113275931-428e8000-931a-11eb-958b-947516f5f611.png)
 
 ---
 
@@ -348,7 +348,7 @@ SQL> desc tbl_member
  ENABLED                                            CHAR(1)
 ```
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2011.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2011.png)
+![12](https://user-images.githubusercontent.com/63957819/113275932-428e8000-931a-11eb-8b38-6a48e83ffb66.png)
 
 데이터를 제거 해야 되는지 행이 계속 유지될지 쓸모없는 상태로 만들 것인지 결정 해야 한다. 인증 용 테이블에는 인증의 활성화, 비활성화를 알리는 컬럼이 하나 반드시 있어야 한다. 인증 용도로 쓰이기 위해서는 값이 1값으로 세팅이 되어 있어야 한다.
 
@@ -368,7 +368,7 @@ SQL> desc tbl_member_auth
  AUTH                                      NOT NULL VARCHAR2(50)
 ```
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2012.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2012.png)
+![13](https://user-images.githubusercontent.com/63957819/113275935-43271680-931a-11eb-8468-3510dd3d4077.png)
 
 두 개의 컬럼을 복합키로 만들어야 적절한 pk역할을 하는 것이다.
 
@@ -460,7 +460,7 @@ Table altered.
 </beans>
 ```
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2013.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2013.png)
+![14](https://user-images.githubusercontent.com/63957819/113275936-43271680-931a-11eb-8189-9fc782d81e79.png)
 
 id가 있어야 하고 비밀번호가 서로 같아야 한다. 그리고 enabled값이 1값이어야 한다. 검색에 대한 컬럼 순서도 정확히 맞춰줘야 한다. 
 
@@ -577,7 +577,7 @@ public class MemberTest {
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2014.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2014.png)
+![15](https://user-images.githubusercontent.com/63957819/113275938-43bfad00-931a-11eb-8abf-85359eadda93.png)
 
 ```sql
 SQL> SELECT userid, userpw from tbl_member;
@@ -744,9 +744,9 @@ Commit complete.
 
 ## <스프링 시큐리티 처리>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2015.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2015.png)
+![16](https://user-images.githubusercontent.com/63957819/113275940-43bfad00-931a-11eb-8f23-f36e18c00122.png)
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2016.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2016.png)
+![17](https://user-images.githubusercontent.com/63957819/113275941-44584380-931a-11eb-83ea-549d99d9381b.png)
 
 servlet-context.xml > Namespaces> security항목 체크
 
@@ -769,7 +769,7 @@ public class OrderController {
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2017.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2017.png)
+![18](https://user-images.githubusercontent.com/63957819/113275942-44584380-931a-11eb-9960-19ff1a41b9fc.png)
 
 ---
 
@@ -786,4 +786,4 @@ public class OrderController {
 
 실행결과>
 
-![day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2018.png](day19%20eaf415212bb14e4f84bdb8f6c1085e90/Untitled%2018.png)
+![19](https://user-images.githubusercontent.com/63957819/113275943-44f0da00-931a-11eb-96f9-75b9fe748f38.png)
