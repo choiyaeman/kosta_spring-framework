@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>resttest.html
+</title>
+
+</head>
+<body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ <script>
+ $.ajax({
+	  "method": "POST",
+	  "transformRequest": [
+	    null
+	  ],
+	  "transformResponse": [
+	    null
+	  ],
+	  "jsonpCallbackParam": "callback",
+	  "url": "http://localhost:8888/boardbackrestspring/reqjson",
+	  "headers": {
+	    "Accept": "application/json, text/plain, */*",
+	    "Content-Type": "application/json;charset=utf-8"
+	  },
+	  "data": "{\"board_no\":1, \"board_title\": \"제목\"}",
+	  "timeout": {},
+	  "success": function(responseObj){
+		  
+		  console.log("POST");
+		  console.log(responseObj);
+	  }
+	}
+		 );
+
+	$.ajax({
+		  "type": "PATCH",
+		  "url": "http://localhost:8888/boardbackrestspring/1",
+		  /* "Content-Type": "application/json;charset=utf-8", */
+		  "data": "{\"board_no\":1}",
+ 		  contentType: 'application/json; charset=utf-8', 
+/* 	contentType: 'application/merge-patch+json', */
+"success": function(responseObj){
+			  console.log("PATCH");
+			  console.log(responseObj);
+		  }
+		});
+ 
+ </script>
+</html>

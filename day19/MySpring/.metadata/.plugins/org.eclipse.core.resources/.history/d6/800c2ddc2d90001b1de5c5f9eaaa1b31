@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>./html/rest.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$.ajax({
+	url :
+	method :
+	data : "{\"tno\": 1, \"owner\": \"owner1\", \"grade\": \"1등급\"}",
+	
+});
+</script>
+</head>
+<body>
+
+</body>
+<form>
+티켓번호: <input type="text" name="tno" value="1"><br>
+소유주: <input type="text" name="owner" value="owner1"><br>
+등급: <input type="text" name="grade" value="등급"><br>
+<input type="button" value="전송">
+</form>
+</html>

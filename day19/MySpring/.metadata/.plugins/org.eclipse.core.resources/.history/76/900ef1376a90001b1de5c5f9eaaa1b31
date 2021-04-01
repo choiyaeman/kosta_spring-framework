@@ -1,0 +1,174 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+ -->
+ <script>
+$(function(){
+	//--답글쓰기링크 클릭 시작--
+	$("section>div.detail>a.reply").click(function(){
+		$("section>div.reply").show();
+		$("section>div.remove").hide();
+		$("section>div.modify").hide();
+		return false;
+	});
+	//--답글쓰기링크 클릭 끝--
+	
+	//--수정링크 클릭 시작--
+	$("section>div.detail>a.modify").click(function(){
+		
+		$("section>div.reply").hide();
+		$("section>div.remove").hide();
+		
+		$("section>div.modify>form>input[name=board_no]").val($("div.detail>span.board_no").html());
+		$("section>div.modify>form>input[name=board_title]").val($("div.detail>span.board_title").html());
+		$("section>div.modify").show(); //수정하기 창띄우기
+		return false;
+	});
+	//--수정링크 클릭 끝--
+	
+	//--삭제링크 클릭 시작--
+	$("section>div.detail>a.remove").click(function(){
+		$("section>div.reply").hide();
+		$("section>div.modify").hide(); 
+		
+		$("section>div.remove>form>input[name=board_no]").val($("div.detail>span.board_no").html());
+		$("section>div.remove").show(); //삭제하기 창띄우기
+		return false;
+	});
+	//--삭제링크 클릭 끝--
+	
+	//--답글쓰기 창에서 답글쓰기 클릭 시작--
+	var $replyFormObj = $("section>div.reply>form");
+	$replyFormObj.submit(function(){
+		var parent_no = $("section>div.detail>span.board_no").html();
+		$replyFormObj.find("input[name=parent_no]").val(parent_no);
+		var url = backContextPath + boardPath + $replyFormObj.attr("action");
+		
+		var formSerializeArray = $replyFormObj.serializeArray();
+		var object = {};
+		for(var i = 0; i< formSerializeArray.length; i++){
+			object[formSerializeArray[i]['name']] = formSerializeArray[i]['value'];
+		}
+		var data = JSON.stringify(object);
+		
+		$.ajax({
+			"method": "POST",
+			  "transformRequest": [
+			    null
+			  ],
+			  "transformResponse": [
+			    null
+			  ],
+			  "jsonpCallbackParam": "callback",
+			  "url": url,
+			  "headers": {
+			    "Accept": "application/json, text/plain, */*",
+			    "Content-Type": "application/json;charset=utf-8"
+			  },
+			  "data": data,
+			  success:function(responseObj){
+				  if(responseObj.status == 1){
+					  $("header>ul>li>a.list").trigger("click");
+				  }else{
+					  alert(responseObj.msg);
+				  }
+			  },
+			error:function(jqXHR){
+				alert("에러:" + jqXHR.status);
+			}
+		});
+		return false;
+	});
+	//--답글쓰기 창에서 답글쓰기 클릭 끝--
+	
+	//--수정하기 창에서 수정 클릭 시작--
+	var $modifyFormObj = $("section>div.modify>form");
+	$modifyFormObj.submit(function(){
+		$.ajax({
+			url: backContextPath + $modifyFormObj.attr("action"),
+			method: $modifyFormObj.attr("method"),
+			data: $modifyFormObj.serialize(),
+			success:function(responseObj){
+				if(responseObj.status == 1){
+					$("header>ul>li>a.list").trigger("click");
+				}else{
+					alert(responseObj.msg);
+				}
+			},
+			error:function(jqXHR){
+				alert("에러:" + jqXHR.status);
+			}
+		});
+		return false;
+	});
+	//--수정하기 창에서 수정 클릭 끝--
+	
+	//--삭제하기 창에서 삭제 클릭 시작--
+	var $removeFormObj = $("section>div.remove>form");
+	$removeFormObj.submit(function(){
+		$.ajax({
+			url: backContextPath + $removeFormObj.attr("action"),
+			method: $removeFormObj.attr("method"),
+			data: $removeFormObj.serialize(),
+			success:function(responseObj){
+				if(responseObj.status == 1){
+					$("header>ul>li>a.list").trigger("click");
+				}else{
+					alert(responseObj.msg);
+				}
+			},
+			error:function(jqXHR){
+				alert("에러:" + jqXHR.status);
+			}
+		});
+		return false;
+	});
+	//--삭제하기 창에서 삭제 클릭 끝--
+});
+</script>
+<style>
+*{
+  box-sizing: border-box;
+}
+
+</style>
+
+<div class="detail">
+글번호 :<span class="board_no"></span><br>
+제목 : <span class="board_title"></span><br>
+작성자 :<span class="board_writer"></span><br>
+작성일자 :<span class="board_dt"></span><br>
+조회수:<span class="board_cnt"></span><br>
+<hr>
+<a href="#" class="reply">답글쓰기</a>&nbsp;&nbsp;
+<a href="#" class="modify">수정</a>&nbsp;&nbsp;
+<a href="#" class="remove">삭제</a>
+</div>
+
+<div class="reply" style="display:none;">
+  <form method="post" action="/reply">
+  <input type="hidden" name="parent_no"> 
+      답글제목: <input type="text" name="board_title"><br>
+      작성자 : <input type="text" name="board_writer"><br>
+      비밀번호:<input type="password" name="board_pwd" required><br>
+   <input type="submit" value="답글쓰기"> 
+  </form>
+</div>
+
+<div class="modify" style="display:none;">
+ <form method="post" action="/modify">
+    글번호  <input type="text" name="board_no"  readonly><br>
+    제목 : <input type="text" name="board_title"><br>
+    작성자 :<span class="board_writer"></span><br>
+    작성일자 :<span class="board_dt"></span><br>
+    조회수: <span class="board_cnt"></span><br>
+    기존 비밀번호 : <input type="password" name="certify_board_pwd" required><br>
+    변경할 비밀번호:<input type="password" name="board_pwd" required><br>
+  <input type="submit" value="수정"> 
+  </form>
+</div>
+<div class="remove" style="display:none;">
+  <form method="post" action="/remove">
+   <input type="hidden" name="board_no" >
+      기존 비밀번호 : <input type="password" name="certify_board_pwd" required><br>
+   <input type="submit"  value="삭제">
+  </form>
+</div>

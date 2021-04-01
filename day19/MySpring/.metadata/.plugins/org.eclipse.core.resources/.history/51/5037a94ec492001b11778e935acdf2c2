@@ -1,0 +1,16 @@
+package controller;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class OrderController {
+	@PreAuthorize("isAuthenticated()") //인증된 경우만
+	@GetMapping(value = "/order/view", produces = "") // /order/view경로에 접근할 수 있다
+	@ResponseBody
+	public String view() {
+		return "주문목록입니다";
+	}
+}

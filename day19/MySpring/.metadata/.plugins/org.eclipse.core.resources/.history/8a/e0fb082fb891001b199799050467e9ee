@@ -1,0 +1,12 @@
+package controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller("/sample/*")
+public class SampleController {
+	@GetMapping("/all")
+	public void all() { //view이름이 /sample/all과 같음, view는 /WEB-INF/views/sample/all/all.jsp가 됨
+		
+	}
+}

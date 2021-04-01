@@ -1,0 +1,16 @@
+package com.my.service;
+
+public class Target { //핵심로직을 담고 있는 클래스
+	public void a() { //JoinPoint
+		System.out.println("a()메서드호출됨");
+	}
+	public void b() { //JoinPoint
+		System.out.println("b()메서드호출됨");
+	}
+	public void c() { //JoinPoint
+		System.out.println("c()메서드호출됨");
+	}
+	public void d() { //JoinPoint
+		System.out.println("d()메서드호출됨");
+	}
+}

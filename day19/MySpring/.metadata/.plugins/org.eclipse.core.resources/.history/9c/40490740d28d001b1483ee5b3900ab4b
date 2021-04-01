@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.RepBoardMapper">
+  <delete id="delete" parameterType="map">
+  	DELETE repboard  where board_no = #{board_no} AND board_pwd = #{board_pwd}
+  </delete>
+  <update id="update" parameterType="map">
+  UPDATE repboard 
+  <set>
+  <if test="board.board_title != null">board_title=#{board.board_title},</if>
+  <if test="board.board_pwd != null">board_pwd=#{board.board_pwd}</if>
+  </set>
+  WHERE board_no = #{board.board_no} AND board_pwd = #{board_pwd}
+  </update>
+  
+  <update id="updateBoardCnt"
+  		  parameterType="int">	
+  		UPDATE repboard SET board_cnt = board_cnt+1
+        WHERE board_no = #{board_no}
+  </update>
+  
+  <select id="selectByBoard_no" 
+          resultType="RepBoard">
+    SELECT * FROM repboard WHERE board_no=#{aaa}
+  </select>
+  <select id="selectByBoard_titleORBoard_writer"
+          parameterType="hashmap" 
+          resultType="RepBoard">
+    SELECT * FROM repboard 
+    WHERE board_title LIKE '%${word}%' OR board_writer LIKE '%${word}%'  
+    ORDER BY  ${o}    
+  </select>
+  
+  <select id="selectAll" resultType="RepBoard">
+	SELECT level, repboard.*
+	FROM repboard 
+	START WITH parent_no = 0
+	CONNECT BY PRIOR board_no = parent_no
+	ORDER SIBLINGS BY board_no DESC
+  </select>
+  
+  <select id="selectAllPerPage" parameterType="map" resultType="RepBoard">
+SELECT * 
+FROM (
+  SELECT rownum r, level, repboard.*
+	FROM repboard 
+	START WITH parent_no = 0
+	CONNECT BY PRIOR board_no = parent_no
+	ORDER SIBLINGS BY board_no DESC
+)
+WHERE r BETWEEN  FUN_START_ROW(#{currentPage}, #{cnt_per_page}) 
+             AND FUN_END_ROW(#{currentPage}, #{cnt_per_page})
+
+  </select>
+  
+  <insert id="insert"
+          parameterType="RepBoard">
+  	INSERT INTO repboard(board_no,        parent_no,    board_title, board_writer, board_dt, BOARD_PWD, board_cnt)  
+	VALUES		 (board_seq.NEXTVAL,   #{parent_no}, #{board_title}, #{board_writer},   SYSDATE, #{board_pwd},         0)
+		
+  </insert>
+</mapper>
